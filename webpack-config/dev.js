@@ -22,7 +22,13 @@ module.exports=webpackMerge(base,{
                             sourceMap:true
                         } 
                     },
-                    "post-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    //"postcss-loader",
                     {
                         loader:"sass-loader",
                         options:{

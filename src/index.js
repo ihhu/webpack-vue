@@ -1,3 +1,5 @@
+import "./scss.scss";
+
 (()=>{
     const div=document.createElement("div");
     div.innerHTML="hello webpack";
