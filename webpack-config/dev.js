@@ -4,6 +4,7 @@ const base=require("./base");
 const path=require("path");
 
 module.exports=webpackMerge(base,{
+    mode: 'development',
     output:{
         filename:"[name].bundle.js"
     },

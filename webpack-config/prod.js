@@ -9,6 +9,7 @@ const path=require("path");
 const BASE_PATH=process.cwd();
 
 module.exports=webpackMerge(base,{
+    mode: 'production',
     output:{
         path:`${BASE_PATH}/dist/`,
         filename:"bundle.[chunkhash].js",
