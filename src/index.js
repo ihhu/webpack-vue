@@ -12,6 +12,7 @@ import "./scss.scss";
     var jon = new Studen("Jon");
     console.log("hello webpack", jon.name);
     document.body.appendChild(div);
+    console.log("process.env.NODE_ENV",process.env.NODE_ENV);
 })();
 
 
