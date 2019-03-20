@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 const CleanWebpackPlugin=require("clean-webpack-plugin");
-
 const webpackMerge=require("webpack-merge");
+
 const base=require("./base");
 const BASE_PATH=process.cwd();
 

@@ -1,10 +1,9 @@
-const path=require("path");
-const BASE_PATH=process.cwd();
-const resolve = dir => path.join(__dirname, "..", dir);
-
 const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 
+const path=require("path");
+const BASE_PATH=process.cwd();
+const resolve = dir => path.join(__dirname, "..", dir);
 
 module.exports={
     entry:{
@@ -37,7 +36,7 @@ module.exports={
     resolve:{
         alias:{
             "vue":"vue/dist/vue.esm.js",
-            "src": resolve("src")
+            "@": resolve("src")
         },
         modules: [
             resolve("src"),
