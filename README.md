@@ -1,6 +1,6 @@
 # webpack-template
 
-基于`webpack2`搭建的前端打包配置环境
+基于`webpack4+ babel7+`搭建的前端打包配置环境
 
 --- 
 
