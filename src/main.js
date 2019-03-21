@@ -14,6 +14,15 @@ new Vue({
         App
     },
     template:"<App/>",
+    mounted(){
+        var oApp=document.querySelector("#app")
+        var oImg=require("@/Style/Images/13.jpg");
+        var oImgEle=document.createElement("img");
+        oImgEle.src=oImg;
+        oImgEle.style.width="500px";
+        oImgEle.style.backgroundImage=`url(${oImg})`;
+        oApp.appendChild(oImgEle);
+    }
     
 })
 

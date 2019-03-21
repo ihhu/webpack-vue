@@ -1,7 +1,7 @@
 {
-  "name": "eg-show",
+  "name": "webpack-template",
   "version": "1.0.0",
-  "description": "eg-show",
+  "description": "",
   "repository": "",
   "scripts": {
     "dev": "webpack-dev-server --progress --color --inline --hot --config build/dev.js",

@@ -9,7 +9,8 @@ module.exports=webpackMerge(base,{
     mode:"production",
     output:{
         path:`${BASE_PATH}/dist/`,
-        filename:"Js/[name].[hash:5].js"
+        filename:"Js/[name].[hash:5].js",
+        publicPath:"/dist/"
     },
     module:{
         rules:[
@@ -17,7 +18,9 @@ module.exports=webpackMerge(base,{
                 test:/\.css|scss$/,
                 use:[
                     {
-                        loader:MiniCssExtractPlugin.loader
+                        loader:MiniCssExtractPlugin.loader,
+                        options:{
+                        }
                     },
                     "css-loader","postcss-loader","sass-loader"
                 ]
@@ -27,8 +30,8 @@ module.exports=webpackMerge(base,{
                 use: [{
                     loader: "file-loader",
                     options: {
-                        name: "Style/Css/[name].[hash:5].[ext]",
-                        publicPath: "/dist/",
+                        name: "[name].[hash:5].[ext]",
+                        outputPath:"Style/Css/",
                     }
                 }]
             }, 
@@ -37,9 +40,9 @@ module.exports=webpackMerge(base,{
                 use: [{
                     loader: "url-loader",
                     options: {
-                        name: "Style/Images/[name].[hash:5].[ext]",
+                        name: "[name].[hash:5].[ext]",
                         limit: 8192,
-                        publicPath: "/dist/",
+                        outputPath:"Style/Images/",
                     }
                 }]
             }
