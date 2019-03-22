@@ -1,6 +1,7 @@
+const webpackMerge=require("webpack-merge");
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 const CleanWebpackPlugin=require("clean-webpack-plugin");
-const webpackMerge=require("webpack-merge");
+const CssUrlRelativePlugin = require('css-url-relative-plugin')
 
 const base=require("./base");
 const BASE_PATH=process.cwd();
@@ -10,7 +11,7 @@ module.exports=webpackMerge(base,{
     output:{
         path:`${BASE_PATH}/dist/`,
         filename:"Js/[name].[hash:5].js",
-        publicPath:"/dist/"
+        //publicPath:"./"
     },
     module:{
         rules:[
@@ -20,6 +21,7 @@ module.exports=webpackMerge(base,{
                     {
                         loader:MiniCssExtractPlugin.loader,
                         options:{
+                            //publicPath:"../../"
                         }
                     },
                     "css-loader","postcss-loader","sass-loader"
@@ -31,7 +33,7 @@ module.exports=webpackMerge(base,{
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash:5].[ext]",
-                        outputPath:"Style/Css/",
+                        outputPath:"Style/Font/",
                     }
                 }]
             }, 
@@ -49,6 +51,10 @@ module.exports=webpackMerge(base,{
         ]
     },
     plugins:[
+        //css url() relative 
+        new CssUrlRelativePlugin({
+            root:"./"
+        }),
         new MiniCssExtractPlugin({
             filename:"Style/Css/[name].[hash:5].css"
         }),
