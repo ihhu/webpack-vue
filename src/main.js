@@ -1,7 +1,12 @@
 import Vue from "vue";
+import VueRouter from "vue-router";
 import App from "./App.vue";
 
+Vue.use(VueRouter)
+
 import "./Style/Scss/Style.scss";
+console.log("app start 1");
+console.log("app",App);
 
 new Vue({
     data(){

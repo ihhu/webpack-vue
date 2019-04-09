@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const webpackMerge=require("webpack-merge");
 
 const base=require("./base");
@@ -7,7 +8,7 @@ module.exports=webpackMerge(base,{
     mode:"development",
     output:{
         path:`${BASE_PATH}/dist/`,
-        filename:"Js/app.[name].js"
+        filename:"JS/app.[name].js"
     },
     module:{
         rules:[
@@ -70,5 +71,7 @@ module.exports=webpackMerge(base,{
     devServer:{
         compress:true,
         //open:true,
-    }
+    },
+    plugins:[
+    ]
 })

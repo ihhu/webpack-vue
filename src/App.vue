@@ -42,6 +42,7 @@
     }
 </script>
 <style lang="scss" scoped>
+    @import "./Style/Scss/Style.scss";
     h1{font-size:50px;color:red;display:flex;transform:translate(50%)}
     
     .img{width:500px;margin-bottom: 10px;;
