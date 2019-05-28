@@ -1,8 +1,9 @@
+const webpack = require('webpack');
 const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 
 const path=require("path");
-const BASE_PATH=process.cwd();
+const {BASE_PATH} = require("./config.js")
 const resolve = dir => path.join(__dirname, "..", dir);
 
 module.exports={
@@ -48,6 +49,9 @@ module.exports={
         new HtmlWebpackPlugin({
             filename:`./index.html`,
             template:`${BASE_PATH}/public/Index.html`
-        })
+        }),
+        new webpack.DefinePlugin({ // 定义环境变量
+            "process.env": JSON.stringify(process.env.NODE_ENV)
+        }),
     ]
 }

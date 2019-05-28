@@ -6,13 +6,13 @@ const CleanWebpackPlugin=require("clean-webpack-plugin");
 const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
 
 const base=require("./base");
-const BASE_PATH=process.cwd();
+const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS,OUTPUT_PATH_CSS,OUTPUT_PATH_FONT,OUTPUT_PATH_IMAGE} = require("./config.js");
 
 module.exports=webpackMerge(base,{
     mode:"production",
     output:{
-        path:`${BASE_PATH}/dist/`,
-        filename:"JS/[name].[hash:5].js",
+        path:OUTPUT_PATH,
+        filename:`${OUTPUT_PATH_JS}[name].[hash:5].js`,
         //publicPath:"./"
     },
     module:{
@@ -35,7 +35,7 @@ module.exports=webpackMerge(base,{
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash:5].[ext]",
-                        outputPath:"Style/Font/",
+                        outputPath:OUTPUT_PATH_FONT,
                     }
                 }]
             }, 
@@ -46,7 +46,7 @@ module.exports=webpackMerge(base,{
                     options: {
                         name: "[name].[hash:5].[ext]",
                         limit: 8192,
-                        outputPath:"Style/Images/",
+                        outputPath:OUTPUT_PATH_IMAGE,
                     }
                 }]
             }
@@ -58,8 +58,8 @@ module.exports=webpackMerge(base,{
             root:"./"
         }),
         new MiniCssExtractPlugin({
-            filename:"Style/Css/[name].[hash:5].css",
-            chunkFilename:"Style/Css/[name].[hash:5].css"
+            filename:`${OUTPUT_PATH_CSS}[name].[hash:5].css`,
+            chunkFilename:`${OUTPUT_PATH_CSS}[name].[hash:5].css`
         }),
         new webpack.DllReferencePlugin({
             context: BASE_PATH,

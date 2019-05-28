@@ -2,13 +2,13 @@ const webpack = require("webpack");
 const webpackMerge=require("webpack-merge");
 
 const base=require("./base");
-const BASE_PATH=process.cwd();
+const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS,OUTPUT_PATH_FONT,OUTPUT_PATH_IMAGE} = require("./config.js");
 
 module.exports=webpackMerge(base,{
     mode:"development",
     output:{
-        path:`${BASE_PATH}/dist/`,
-        filename:"JS/app.[name].js"
+        path:OUTPUT_PATH,
+        filename:`${OUTPUT_PATH_JS}app.[name].js`
     },
     module:{
         rules:[
@@ -47,7 +47,7 @@ module.exports=webpackMerge(base,{
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash:5].[ext]",
-                        outputPath: "Style/Css/",
+                        outputPath: OUTPUT_PATH_FONT,
                     }
                 }]
             }, 
@@ -58,7 +58,7 @@ module.exports=webpackMerge(base,{
                     options: {
                         name: "[name]-[hash:5].[ext]",
                         limit: 8192,
-                        outputPath: "Style/Images/",
+                        outputPath: OUTPUT_PATH_IMAGE,
                     }
                 }]
             }

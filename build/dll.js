@@ -1,7 +1,7 @@
 const webpack=require("webpack");
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path');
-const BASE_PATH=process.cwd();
+const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS} = require("./config.js");
 const resolve = dir => path.join(__dirname, "..", dir);
 
 module.exports={
@@ -11,7 +11,7 @@ module.exports={
     },
     output:{
         path:`${BASE_PATH}/dist/`,
-        filename:"JS/[name].dll.js",
+        filename:`${OUTPUT_PATH_JS}[name].dll.js`,
         library:"[name]"
     },
     module:{
@@ -36,7 +36,7 @@ module.exports={
     plugins:[
         new VueLoaderPlugin(),
         new webpack.DllPlugin({
-            path: path.join(BASE_PATH, 'dist/JS', '[name].manifest.json'),
+            path: path.join(OUTPUT_PATH, OUTPUT_PATH_JS, '[name].manifest.json'),
             name:"[name]"
         })
     ]
