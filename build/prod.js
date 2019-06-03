@@ -21,7 +21,7 @@ module.exports=webpackMerge(base,{
                 test:/\.css|scss$/,
                 use:[
                     {
-                        loader:MiniCssExtractPlugin.loader,
+                        loader: MiniCssExtractPlugin.loader,
                         options:{
                             //publicPath:"../../"
                         }
@@ -35,7 +35,7 @@ module.exports=webpackMerge(base,{
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash:5].[ext]",
-                        outputPath:OUTPUT_PATH_FONT,
+                        outputPath: OUTPUT_PATH_FONT,
                     }
                 }]
             }, 
@@ -46,7 +46,7 @@ module.exports=webpackMerge(base,{
                     options: {
                         name: "[name].[hash:5].[ext]",
                         limit: 8192,
-                        outputPath:OUTPUT_PATH_IMAGE,
+                        outputPath: OUTPUT_PATH_IMAGE,
                     }
                 }]
             }

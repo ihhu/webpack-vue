@@ -46,7 +46,7 @@ module.exports=webpackMerge(base,{
                 use: [{
                     loader: "file-loader",
                     options: {
-                        name: "[name].[hash:5].[ext]",
+                        name: "[name].[ext]",
                         outputPath: OUTPUT_PATH_FONT,
                     }
                 }]
@@ -56,7 +56,7 @@ module.exports=webpackMerge(base,{
                 use: [{
                     loader: "url-loader",
                     options: {
-                        name: "[name]-[hash:5].[ext]",
+                        name: "[name].[ext]",
                         limit: 8192,
                         outputPath: OUTPUT_PATH_IMAGE,
                     }
