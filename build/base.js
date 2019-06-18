@@ -21,17 +21,17 @@ module.exports={
                 test:/\.vue$/,
                 loader:"vue-loader"
             },
-            {
-                test:/\.html$/,
-                use:[
-                    {
-                        loader:"html-loader",
-                        options:{
-                            minimize:true
-                        }
-                    }
-                ]
-            }
+            // {
+            //     test:/\.html$/,
+            //     use:[
+            //         {
+            //             loader:"html-loader",
+            //             options:{
+            //                 minimize:true
+            //             }
+            //         }
+            //     ]
+            // }
         ]
     },
     resolve:{
@@ -47,6 +47,16 @@ module.exports={
     plugins:[
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
+            title:"主页",
+            minify:{
+                "collapseWhitespace":true,  // 折叠空白区域
+                "collapseInlineTagWhitespace":true,
+                "conservativeCollapse":true,
+                "removeRedundantAttributes":true, // 删除多余的属性
+                "removeAttributeQuotes": true, // 移除属性的引号
+                "removeComments": true, // 移除注释
+                "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
+            },
             filename:`./index.html`,
             template:`${BASE_PATH}/public/Index.html`
         }),

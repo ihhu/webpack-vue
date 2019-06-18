@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const webpackMerge=require("webpack-merge");
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
-const CleanWebpackPlugin=require("clean-webpack-plugin");
+const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
 
 const base=require("./base");
