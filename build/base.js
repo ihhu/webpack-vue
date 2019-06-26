@@ -21,17 +21,17 @@ module.exports={
                 test:/\.vue$/,
                 loader:"vue-loader"
             },
-            // {
-            //     test:/\.html$/,
-            //     use:[
-            //         {
-            //             loader:"html-loader",
-            //             options:{
-            //                 minimize:true
-            //             }
-            //         }
-            //     ]
-            // }
+            {
+                test:/\.html$/,
+                use:[
+                    {
+                        loader:"html-loader",
+                        options:{
+                            minimize:true
+                        }
+                    }
+                ]
+            }
         ]
     },
     resolve:{
@@ -58,7 +58,7 @@ module.exports={
                 "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
             },
             filename:`./index.html`,
-            template:`${BASE_PATH}/public/Index.html`
+            template:`${BASE_PATH}/public/Index.ejs`
         }),
         new webpack.DefinePlugin({ // 定义环境变量
             "process.env": JSON.stringify(process.env.NODE_ENV)

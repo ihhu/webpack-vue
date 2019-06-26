@@ -10,6 +10,8 @@ module.exports=webpackMerge(base,{
         path:OUTPUT_PATH,
         filename:`${OUTPUT_PATH_JS}app.[name].js`
     },
+    optimization:{
+    },
     module:{
         rules:[
             {
@@ -42,7 +44,7 @@ module.exports=webpackMerge(base,{
                 ]
             }, 
             {
-                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+                test: /\.(eot|ttf|woff|woff2)\w*/,
                 use: [{
                     loader: "file-loader",
                     options: {
@@ -64,8 +66,8 @@ module.exports=webpackMerge(base,{
             }
         ]
     },
-    //devtool:"eval-source-map",
-    devtool:"none",
+    devtool:"eval-source-map",
+    //devtool:"none",
     plugins:[
     ],
     devServer:{
@@ -73,5 +75,8 @@ module.exports=webpackMerge(base,{
         //open:true,
     },
     plugins:[
+        new webpack.DefinePlugin({
+            IS_DEV: JSON.stringify(true)
+        })
     ]
 })

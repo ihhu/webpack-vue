@@ -4,6 +4,7 @@ const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
 const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const base=require("./base");
 const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS,OUTPUT_PATH_CSS,OUTPUT_PATH_FONT,OUTPUT_PATH_IMAGE} = require("./config.js");
@@ -14,6 +15,26 @@ module.exports=webpackMerge(base,{
         path:OUTPUT_PATH,
         filename:`${OUTPUT_PATH_JS}[name].[hash:5].js`,
         //publicPath:"./"
+    },
+    optimization:{
+        minimizer:[
+            new TerserPlugin({
+                cache:true,
+                parallel:true,
+                terserOptions:{
+                    compress:{
+                        drop_console:true,
+                        hoist_vars:true,
+                        reduce_vars:true,
+                        hoist_funs:true,
+                        dead_code:true
+                    },
+                    output:{
+                        ascii_only:true,
+                    }
+                }
+            })
+        ]
     },
     module:{
         rules:[
@@ -30,7 +51,7 @@ module.exports=webpackMerge(base,{
                 ]
             }, 
             {
-                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+                test: /\.(eot|ttf|woff|woff2)\w*/,
                 use: [{
                     loader: "file-loader",
                     options: {
@@ -53,6 +74,9 @@ module.exports=webpackMerge(base,{
         ]
     },
     plugins:[
+        new webpack.DefinePlugin({
+            IS_DEV: JSON.stringify(false)
+        }),
         //css url() relative 
         new CssUrlRelativePlugin({
             root:"./"
