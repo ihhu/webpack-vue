@@ -13,6 +13,7 @@ module.exports=webpackMerge(base,{
     mode:"production",
     output:{
         path:OUTPUT_PATH,
+        chunkFilename:`${OUTPUT_PATH_JS}[name].[hash:5].js`,
         filename:`${OUTPUT_PATH_JS}[name].[hash:5].js`,
         //publicPath:"./"
     },
@@ -34,7 +35,18 @@ module.exports=webpackMerge(base,{
                     }
                 }
             })
-        ]
+        ],
+        splitChunks: {
+            automaticNameDelimiter: '.',
+            cacheGroups:{
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    priority: -10
+                }
+            }
+            
+        }
     },
     module:{
         rules:[

@@ -1,8 +1,9 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
 import App from "./App.vue";
 
-Vue.use(VueRouter)
+import router from "@/JS/router.js";
+
+
 
 import "./Style/Scss/Style.scss";
 console.log("app start 1");
@@ -19,6 +20,7 @@ new Vue({
         App
     },
     template:"<App/>",
+    router,
     mounted(){
         var oApp=document.querySelector("#app")
         var oImg=require("@/Style/Images/13.jpg");

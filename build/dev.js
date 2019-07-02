@@ -8,6 +8,7 @@ module.exports=webpackMerge(base,{
     mode:"development",
     output:{
         path:OUTPUT_PATH,
+        chunkFilename:`${OUTPUT_PATH_JS}[name].js`,
         filename:`${OUTPUT_PATH_JS}app.[name].js`
     },
     optimization:{

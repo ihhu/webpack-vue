@@ -223,7 +223,7 @@ npm i -D file-loader url-loader
             //...
 
             {
-                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+                test: /\.(eot|ttf|woff|woff2)\w*/,
                 use: [{
                     loader: "file-loader",
                     options: {

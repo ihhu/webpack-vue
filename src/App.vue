@@ -1,5 +1,13 @@
 <template>
     <div id="app">
+        <router-link to="/" exact>根路由</router-link>
+        <router-link to="/a">a路由</router-link>
+        <router-link to="/b">b路由</router-link>
+        <hr>
+        <hr>
+        <hr>
+        <router-view />
+        <hr><hr><hr>
         <h1>
             {{text}}
         </h1>
