@@ -10,6 +10,19 @@ module.exports={
     entry:{
         main:`${BASE_PATH}/src/main.js`
     },
+    optimization:{
+        splitChunks: {
+            automaticNameDelimiter: '.',
+            cacheGroups:{
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    priority: -10
+                }
+            }
+            
+        }
+    },
     module:{
         rules:[
             {

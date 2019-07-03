@@ -35,18 +35,7 @@ module.exports=webpackMerge(base,{
                     }
                 }
             })
-        ],
-        splitChunks: {
-            automaticNameDelimiter: '.',
-            cacheGroups:{
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'all',
-                    priority: -10
-                }
-            }
-            
-        }
+        ]
     },
     module:{
         rules:[
