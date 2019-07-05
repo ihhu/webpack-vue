@@ -73,8 +73,6 @@ module.exports={
             filename:`./index.html`,
             template:`${BASE_PATH}/public/Index.ejs`
         }),
-        new webpack.DefinePlugin({ // 定义环境变量
-            "process.env": JSON.stringify(process.env.NODE_ENV)
-        }),
+        new webpack.HashedModuleIdsPlugin()     //hash id 缓存
     ]
 }

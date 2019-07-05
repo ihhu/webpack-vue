@@ -13,8 +13,8 @@ module.exports=webpackMerge(base,{
     mode:"production",
     output:{
         path:OUTPUT_PATH,
-        chunkFilename:`${OUTPUT_PATH_JS}[name].[hash:5].js`,
-        filename:`${OUTPUT_PATH_JS}[name].[hash:5].js`,
+        chunkFilename:`${OUTPUT_PATH_JS}[name].[contenthash:5].js`,
+        filename:`${OUTPUT_PATH_JS}[name].[contenthash:5].js`,
         //publicPath:"./"
     },
     optimization:{
@@ -56,7 +56,7 @@ module.exports=webpackMerge(base,{
                 use: [{
                     loader: "file-loader",
                     options: {
-                        name: "[name].[hash:5].[ext]",
+                        name: "[name].[contenthash:5].[ext]",
                         outputPath: OUTPUT_PATH_FONT,
                     }
                 }]
@@ -66,7 +66,7 @@ module.exports=webpackMerge(base,{
                 use: [{
                     loader: "url-loader",
                     options: {
-                        name: "[name].[hash:5].[ext]",
+                        name: "[name].[contenthash:5].[ext]",
                         limit: 8192,
                         outputPath: OUTPUT_PATH_IMAGE,
                     }
@@ -83,8 +83,8 @@ module.exports=webpackMerge(base,{
             root:"./"
         }),
         new MiniCssExtractPlugin({
-            filename:`${OUTPUT_PATH_CSS}[name].[hash:5].css`,
-            chunkFilename:`${OUTPUT_PATH_CSS}[name].[hash:5].css`
+            filename:`${OUTPUT_PATH_CSS}[name].[contenthash:5].css`,
+            chunkFilename:`${OUTPUT_PATH_CSS}[name].[contenthash:5].css`
         }),
         new webpack.DllReferencePlugin({
             context: BASE_PATH,

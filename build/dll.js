@@ -1,5 +1,4 @@
 const webpack=require("webpack");
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path');
 const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS} = require("./config.js");
 const resolve = dir => path.join(__dirname, "..", dir);
@@ -19,10 +18,6 @@ module.exports={
             {
                 test:/\.js$/,
                 loader:"babel-loader"
-            },
-            {
-                test:/\.vue$/,
-                loader:"vue-loader"
             }
         ]
     },
@@ -34,7 +29,6 @@ module.exports={
         }
     },
     plugins:[
-        new VueLoaderPlugin(),
         new webpack.DllPlugin({
             path: path.join(OUTPUT_PATH, OUTPUT_PATH_JS, '[name].manifest.json'),
             name:"[name]"
