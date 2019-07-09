@@ -6,10 +6,17 @@ const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
-const base=require("./base");
-const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS,OUTPUT_PATH_CSS,OUTPUT_PATH_FONT,OUTPUT_PATH_IMAGE} = require("./config.js");
+const {
+    BASE_PATH,
+    OUTPUT_PATH,
+    OUTPUT_PATH_JS,
+    OUTPUT_PATH_CSS,
+    OUTPUT_PATH_FONT,
+    OUTPUT_PATH_IMAGE
+} = require("./config.js");
 
-module.exports=webpackMerge(base,{
+const baseConf=require("./base");
+const prodConf = {
     mode:"production",
     output:{
         path:OUTPUT_PATH,
@@ -21,7 +28,7 @@ module.exports=webpackMerge(base,{
         minimizer:[
             new TerserPlugin({
                 cache:true,
-                parallel:true,
+                parallel:true, // 开启多线程压缩
                 terserOptions:{
                     compress:{
                         drop_console:true,
@@ -100,4 +107,6 @@ module.exports=webpackMerge(base,{
         })
     ]
 
-})
+}
+
+module.exports=webpackMerge(baseConf,prodConf)

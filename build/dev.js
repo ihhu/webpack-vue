@@ -1,10 +1,16 @@
 const webpack = require("webpack");
 const webpackMerge=require("webpack-merge");
 
-const base=require("./base");
-const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS,OUTPUT_PATH_FONT,OUTPUT_PATH_IMAGE} = require("./config.js");
+const {
+    BASE_PATH,
+    OUTPUT_PATH,
+    OUTPUT_PATH_JS,
+    OUTPUT_PATH_FONT,
+    OUTPUT_PATH_IMAGE
+} = require("./config.js");
 
-module.exports=webpackMerge(base,{
+const baseConf=require("./base");
+const devConf={
     mode:"development",
     output:{
         path:OUTPUT_PATH,
@@ -80,4 +86,6 @@ module.exports=webpackMerge(base,{
             IS_DEV: JSON.stringify(true)
         })
     ]
-})
+};
+
+module.exports=webpackMerge(baseConf,devConf)

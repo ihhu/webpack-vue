@@ -1,7 +1,11 @@
 const webpack=require("webpack");
 const path = require('path');
-const {BASE_PATH,OUTPUT_PATH,OUTPUT_PATH_JS} = require("./config.js");
-const resolve = dir => path.join(__dirname, "..", dir);
+const {
+    BASE_PATH,
+    OUTPUT_PATH,
+    OUTPUT_PATH_JS,
+    resolve
+} = require("./config.js");
 
 module.exports={
     mode:"production",

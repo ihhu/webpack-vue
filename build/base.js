@@ -2,13 +2,17 @@ const webpack = require('webpack');
 const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 
-const path=require("path");
-const {BASE_PATH} = require("./config.js")
-const resolve = dir => path.join(__dirname, "..", dir);
+const { 
+    ENTRY_PATH,
+    VIEWS_PATH,
+    resolve
+} = require("./config.js")
 
-module.exports={
+
+
+const baseConf={
     entry:{
-        main:`${BASE_PATH}/src/main.js`
+        main:`${ENTRY_PATH}main.js`
     },
     optimization:{
         splitChunks: {
@@ -71,8 +75,10 @@ module.exports={
                 "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
             },
             filename:`./index.html`,
-            template:`${BASE_PATH}/public/Index.ejs`
+            template:`${VIEWS_PATH}Index.ejs`
         }),
         new webpack.HashedModuleIdsPlugin()     //hash id 缓存
     ]
 }
+
+module.exports=baseConf;

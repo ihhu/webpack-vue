@@ -5,7 +5,7 @@
   "repository": "",
   "scripts": {
     "dev": "webpack-dev-server --progress --color --inline --hot --config build/dev.js",
-    "prod": "webpack --progress --config build/prod.js",
+    "prod": "webpack --progress --color --config build/prod.js",
     "dll": "webpack --config build/dll.js"
   },
   "keywords": [],
