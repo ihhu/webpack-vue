@@ -73,8 +73,7 @@ const devConf={
             }
         ]
     },
-    devtool:"eval-source-map",
-    //devtool:"none",
+    devtool:"cheap-module-eval-source-map",
     plugins:[
     ],
     devServer:{
