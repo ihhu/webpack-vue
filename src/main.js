@@ -1,11 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 
-import router from "@/JS/router.js";
+import router from "@JS/router.js";
 
 
-
-import "./Style/Scss/Style.scss";
+import "@Style/Scss/common.scss";
+import "@Style/Scss/style.scss";
 console.log("app start 1");
 console.log("app",App);
 

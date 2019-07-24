@@ -54,6 +54,11 @@ const baseConf={
     resolve:{
         alias:{
             "@": resolve("src"),
+            "@Style": "@/Style",
+            "@JS": "@/JS",
+            "@Router": "@/Router",
+            "@Views": "@/Views",
+            "@Components": "@/Components",
             'vue':"vue/dist/vue.esm.js"
         },
         modules: [
