@@ -4,9 +4,10 @@
   "description": "",
   "repository": "",
   "scripts": {
-    "dev": "webpack-dev-server --progress --color --inline --hot --config build/dev.js",
+    "dev": "webpack-dev-server --progress --color --inline --hot --host 0.0.0.0 --config build/dev.js",
     "prod": "webpack --progress --color --config build/prod.js",
-    "dll": "webpack --config build/dll.js"
+    "dll": "webpack --config build/dll.js",
+    "build": "npm run dll && npm run prod"
   },
   "keywords": [],
   "author": "",
@@ -21,30 +22,30 @@
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
-    "core-js": "^3.1.4",
-    "css-loader": "^3.0.0",
+    "core-js": "^3.2.1",
+    "css-loader": "^3.2.0",
     "css-url-relative-plugin": "^1.0.0",
     "cssnano": "^4.1.10",
-    "file-loader": "^4.0.0",
+    "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "url-loader": "^2.0.1",
+    "sass-loader": "^7.2.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.36.1",
+    "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2",
+    "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.7",
+    "vue-router": "^3.1.2",
     "vuex": "^3.1.1"
   }
 }
