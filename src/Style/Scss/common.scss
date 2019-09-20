@@ -1,24 +1,24 @@
 @import "_reset.scss";
-/* ¹ö¶¯Ìõ */
+/* æ»šåŠ¨æ¡ */
 .scroll::-webkit-scrollbar {
   width: 7px !important;
   border-radius: 7px;
   display: block !important;
 }
 
-/* HandleÑùÊ½ */
+/* Handleæ ·å¼ */
 .scroll::-webkit-scrollbar-thumb {
   -webkit-border-radius: 7px;
   border-radius: 7px;
   background-color: #ddd;
 }
 
-/*hoverµ½¹ö¶¯ÌõÉÏ*/
+/*hoveråˆ°æ»šåŠ¨æ¡ä¸Š*/
 .scroll::-webkit-scrollbar-thumb:vertical:hover {
   background-color: lighten(#ddd,5%);
 }
 
-/*¹ö¶¯Ìõ°´ÏÂ*/
+/*æ»šåŠ¨æ¡æŒ‰ä¸‹*/
 .scroll::-webkit-scrollbar-thumb:vertical:active {
   background-color: darken(#ddd,5%);
 }
