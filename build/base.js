@@ -36,7 +36,10 @@ const baseConf={
             },
             {
                 test:/\.vue$/,
-                loader:"vue-loader"
+                loader:"vue-loader",
+                options:{
+                    compilerOptions:{preserveWhitespace:false}
+                }
             },
             {
                 test:/\.html$/,
@@ -53,8 +56,15 @@ const baseConf={
     },
     resolve:{
         alias:{
+            'vue':"vue/dist/vue.esm.js",
             "@": resolve("src"),
-            'vue':"vue/dist/vue.esm.js"
+            "@JS": "@/JS",
+            "@Mixins": "@/Mixins",
+            "@Style": "@/Style",
+            "@Store": "@/Store",
+            "@Views": "@/Views",
+            "@Components": "@/Components",
+            "@Router": "@/Router",
         },
         modules: [
             resolve("src"),
@@ -74,8 +84,12 @@ const baseConf={
                 "removeComments": true, // 移除注释
                 "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
             },
+            favicon:`${ENTRY_PATH}favicon.ico`,
             filename:`./index.html`,
-            template:`${VIEWS_PATH}Index.ejs`
+            template:`${VIEWS_PATH}Index.ejs`,
+            commonCssLink:[
+				// "//at.alicdn.com/t/font_1317347_ft563urqo0g.css"
+			]
         }),
         new webpack.HashedModuleIdsPlugin()     //hash id 缓存
     ]

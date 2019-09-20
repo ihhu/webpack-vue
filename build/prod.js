@@ -12,7 +12,8 @@ const {
     OUTPUT_PATH_JS,
     OUTPUT_PATH_CSS,
     OUTPUT_PATH_FONT,
-    OUTPUT_PATH_IMAGE
+    OUTPUT_PATH_IMAGE,
+    ENTRY_PATH
 } = require("./config.js");
 
 const baseConf=require("./base");
@@ -47,7 +48,7 @@ const prodConf = {
     module:{
         rules:[
             {
-                test:/\.css|scss$/,
+                test:/\.css$/,
                 use:[
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -55,7 +56,22 @@ const prodConf = {
                             //publicPath:"../../"
                         }
                     },
-                    "css-loader","postcss-loader","sass-loader"
+                    "css-loader","postcss-loader"
+                ]
+            }, 
+            {
+                test:/\.scss$/,
+                use:[
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    "css-loader","postcss-loader","sass-loader",
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: `${ENTRY_PATH}Style/Scss/_mixin.scss` 
+                        }
+                    }
                 ]
             }, 
             {
