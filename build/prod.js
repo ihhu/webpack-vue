@@ -6,23 +6,15 @@ const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
-const {
-    BASE_PATH,
-    OUTPUT_PATH,
-    OUTPUT_PATH_JS,
-    OUTPUT_PATH_CSS,
-    OUTPUT_PATH_FONT,
-    OUTPUT_PATH_IMAGE,
-    ENTRY_PATH
-} = require("./config.js");
+const { PATHS } = require("./config.js");
 
 const baseConf=require("./base");
 const prodConf = {
     mode:"production",
     output:{
-        path:OUTPUT_PATH,
-        chunkFilename:`${OUTPUT_PATH_JS}[name].[contenthash:5].js`,
-        filename:`${OUTPUT_PATH_JS}[name].[contenthash:5].js`,
+        path:PATHS.output,
+        chunkFilename:`${PATHS.out_js}[name].[contenthash:5].js`,
+        filename:`${PATHS.out_js}[name].[contenthash:5].js`,
         //publicPath:"./"
     },
     optimization:{
@@ -69,7 +61,7 @@ const prodConf = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: `${ENTRY_PATH}Style/Scss/_mixin.scss` 
+                            resources: `${PATHS.entry}Style/Scss/_mixin.scss` 
                         }
                     }
                 ]
@@ -80,7 +72,7 @@ const prodConf = {
                     loader: "file-loader",
                     options: {
                         name: "[name].[contenthash:5].[ext]",
-                        outputPath: OUTPUT_PATH_FONT,
+                        outputPath: PATHS.out_font,
                     }
                 }]
             }, 
@@ -91,7 +83,7 @@ const prodConf = {
                     options: {
                         name: "[name].[contenthash:5].[ext]",
                         limit: 8192,
-                        outputPath: OUTPUT_PATH_IMAGE,
+                        outputPath: PATHS.out_images,
                     }
                 }]
             }
@@ -106,15 +98,15 @@ const prodConf = {
             root:"./"
         }),
         new MiniCssExtractPlugin({
-            filename:`${OUTPUT_PATH_CSS}[name].[contenthash:5].css`,
-            chunkFilename:`${OUTPUT_PATH_CSS}[name].[contenthash:5].css`
+            filename:`${PATHS.out_css}[name].[contenthash:5].css`,
+            chunkFilename:`${PATHS.out_css}[name].[contenthash:5].css`
         }),
         new webpack.DllReferencePlugin({
-            context: BASE_PATH,
-            manifest: require("../dist/JS/vendor.manifest.json"),
+            context: PATHS.base,
+            manifest: require(`${PATHS.output}/JS/vendor.manifest.json`),
         }),
         new AddAssetHtmlPlugin({
-            filepath:`${BASE_PATH}/dist/JS/*.dll.js`,
+            filepath:`${PATHS.output}/JS/*.dll.js`,
             outputPath:`./JS/`,
             publicPath:"JS"
         }),

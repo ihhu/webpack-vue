@@ -7,6 +7,8 @@ import router from "@Router/router.js";
 
 import "@Style/Scss/Style.scss";
 console.log("env:::",env)
+console.log("IS_DEV:::",IS_DEV)
+console.log("IS_MOCK:::",IS_MOCK)
 console.log("app start 1");
 console.log("app",App);
 

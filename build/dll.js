@@ -1,24 +1,17 @@
 const webpack=require("webpack");
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
-const {
-    BASE_PATH,
-    OUTPUT_PATH,
-    OUTPUT_PATH_JS,
-    resolve
-} = require("./config.js");
+
+const { PATHS, resolves } = require("./config.js");
 
 module.exports={
     mode:"production",
     entry:{
-        vendor:[
-            "vue","vue-router",
-            // "vuex"
-        ]
+        vendor:["vue","vue-router","vuex"]
     },
     output:{
-        path:`${BASE_PATH}/dist/`,
-        filename:`${OUTPUT_PATH_JS}[name].dll.js`,
+        path:`${PATHS.output}`,
+        filename:`${PATHS.out_js}[name].dll.js`,
         library:"[name]"
     },
     optimization:{
@@ -51,14 +44,11 @@ module.exports={
     },
     devtool:"none",
     resolve: {
-        alias:{
-            "@": resolve("src"),
-            'vue':"vue/dist/vue.esm.js"
-        }
+        ...resolves
     },
     plugins:[
         new webpack.DllPlugin({
-            path: path.join(OUTPUT_PATH, OUTPUT_PATH_JS, '[name].manifest.json'),
+            path: path.join(PATHS.output, PATHS.out_js, '[name].manifest.json'),
             name:"[name]"
         })
     ]

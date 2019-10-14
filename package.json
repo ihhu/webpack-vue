@@ -4,8 +4,8 @@
   "description": "",
   "repository": "",
   "scripts": {
-    "dev": "webpack-dev-server --env.mock=false --progress --color --inline --host 0.0.0.0 --hot --config build/dev.js",
-    "dev:mock": "webpack-dev-server --env.mock=true --progress --color --inline --host 0.0.0.0 --hot --config build/dev.js",
+    "dev": "webpack-dev-server --env.mock=false --progress --color --config build/dev.js",
+    "dev:mock": "webpack-dev-server --env.mock=true --progress --color --config build/dev.js",
     "prod": "webpack --progress --color --config build/prod.js",
     "dll": "webpack --config build/dll.js",
     "build": "npm run dll && npm run prod"

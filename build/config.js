@@ -1,34 +1,45 @@
-const path=require("path");
-
-const resolve = dir => path.join(__dirname, "..", dir);
-
 const BASE_PATH=process.cwd();
-const ENTRY_PATH=`${BASE_PATH}/src/`;
-const OUTPUT_PATH=`${BASE_PATH}/dist/`;
-const OUTPUT_PATH_IMAGE=`Style/Images/`
-const OUTPUT_PATH_FONT=`Style/Font/`
-const OUTPUT_PATH_JS=`JS/`
-const OUTPUT_PATH_CSS=`Style/Css/`;
-const VIEWS_PATH = resolve("public/pages/")
+const PATHS={
+    base:BASE_PATH,
+    entry:`${BASE_PATH}/src/`,
+    output:`${BASE_PATH}/dist/`,
+    out_images:"Style/Images/",
+    out_font:"Style/Font/",
+    out_js:"JS/",
+    out_css:"Style/Css/",
+    views:`${BASE_PATH}/public/pages/`,
+    "node_modules":`${BASE_PATH}/node_modules/`
+}
 
 const config = {
-    //base path
-    BASE_PATH,
-    //entry path
-    ENTRY_PATH,
-    //views path
-    VIEWS_PATH,
-    //output path
-    OUTPUT_PATH,
-    //output images path
-    OUTPUT_PATH_IMAGE,
-    //output font path
-    OUTPUT_PATH_FONT,
-    //output js path
-    OUTPUT_PATH_JS,
-    //output css path
-    OUTPUT_PATH_CSS,
-    //resolve
-    resolve
+    PATHS,
+    devServer:{
+        compress:true,
+        host:"0.0.0.0",
+        proxy:{
+        },
+        stats: {
+            colors: true,
+        },
+        overlay: true,
+        hot: true,
+        inline:true
+    },
+    resolves:{
+        alias:{
+            "@": PATHS.entry,
+            "@JS": "@/JS",
+            "@Mixins": "@/Mixins",
+            "@Style": "@/Style",
+            "@Store": "@/Store",
+            "@Views": "@/Views",
+            "@Components": "@/Components",
+            "@Router": "@/Router",
+            'vue':"vue/dist/vue.esm.js",
+        },
+        modules: [
+            PATHS.entry,PATHS.node_modules
+        ]
+    },
 }
 module.exports= config;

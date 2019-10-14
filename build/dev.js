@@ -1,23 +1,14 @@
 const webpack = require("webpack");
 const webpackMerge=require("webpack-merge");
-let env=null;
-const {
-    BASE_PATH,
-    ENTRY_PATH,
-    OUTPUT_PATH,
-    OUTPUT_PATH_JS,
-    OUTPUT_PATH_FONT,
-    OUTPUT_PATH_IMAGE
-} = require("./config.js");
-
+const { PATHS, devServer } = require("./config.js");
 function webpackConfig(env){
     const baseConf=require("./base");
     const devConf={
         mode:"development",
         output:{
-            path:OUTPUT_PATH,
-            chunkFilename:`${OUTPUT_PATH_JS}[name].js`,
-            filename:`${OUTPUT_PATH_JS}app.[name].js`
+            path:PATHS.output,
+            chunkFilename:`${PATHS.out_js}[name].js`,
+            filename:`${PATHS.out_js}app.[name].js`
         },
         optimization:{
         },
@@ -63,7 +54,7 @@ function webpackConfig(env){
                             loader: 'sass-resources-loader',
                             options: {
                                 sourceMap: true,
-                                resources: `${ENTRY_PATH}Style/Scss/_mixin.scss` 
+                                resources: `${PATHS.entry}Style/Scss/_mixin.scss` 
                             }
                         }
                     ]
@@ -74,7 +65,7 @@ function webpackConfig(env){
                         loader: "file-loader",
                         options: {
                             name: "[name].[ext]",
-                            outputPath: OUTPUT_PATH_FONT,
+                            outputPath: PATHS.out_font,
                         }
                     }]
                 }, 
@@ -85,7 +76,7 @@ function webpackConfig(env){
                         options: {
                             name: "[name].[ext]",
                             limit: 8192,
-                            outputPath: OUTPUT_PATH_IMAGE,
+                            outputPath: PATHS.out_images,
                         }
                     }]
                 }
@@ -95,16 +86,12 @@ function webpackConfig(env){
         plugins:[
         ],
         devServer:{
-            compress:true,
-            proxy:{
-            }
-            //open:true,
+            ...devServer
         },
         plugins:[
             new webpack.DefinePlugin({
                 IS_DEV: JSON.stringify(true),
-                IS_MOCK:env.mock,
-                env:JSON.stringify(env)
+                IS_MOCK:env.mock
             })
         ]
     };

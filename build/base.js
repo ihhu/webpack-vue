@@ -2,17 +2,26 @@ const webpack = require('webpack');
 const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 
-const { 
-    ENTRY_PATH,
-    VIEWS_PATH,
-    resolve
-} = require("./config.js")
+const { PATHS, resolves } = require("./config.js")
+const { getEnvs,getIPAdress }=require("./utils.js")
 
-
+// 获取环境变量
+let env_array = getEnvs();
+let ipAddress = getIPAdress();
+// 设置环境变量
+env_array.forEach(e => {
+    let [key, value] = e.split('=');
+    if (value === 'false' || value === 'true') {
+        process.env[key] = JSON.parse(value);
+    } else {
+        process.env[key] = value;
+    }
+}); 
+process.env.__HOST=ipAddress[0];
 
 const baseConf={
     entry:{
-        main:`${ENTRY_PATH}main.js`
+        main:`${PATHS.entry}main.js`
     },
     optimization:{
         splitChunks: {
@@ -55,21 +64,7 @@ const baseConf={
         ]
     },
     resolve:{
-        alias:{
-            'vue':"vue/dist/vue.esm.js",
-            "@": resolve("src"),
-            "@JS": "@/JS",
-            "@Mixins": "@/Mixins",
-            "@Style": "@/Style",
-            "@Store": "@/Store",
-            "@Views": "@/Views",
-            "@Components": "@/Components",
-            "@Router": "@/Router",
-        },
-        modules: [
-            resolve("src"),
-            resolve("node_modules")
-        ]
+        ...resolves
     },
     plugins:[
         new VueLoaderPlugin(),
@@ -84,14 +79,17 @@ const baseConf={
                 "removeComments": true, // 移除注释
                 "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
             },
-            favicon:`${ENTRY_PATH}favicon.ico`,
+            favicon:`${PATHS.entry}favicon.ico`,
             filename:`./index.html`,
-            template:`${VIEWS_PATH}Index.ejs`,
+            template:`${PATHS.views}Index.ejs`,
             commonCssLink:[
 				// "//at.alicdn.com/t/font_1317347_ft563urqo0g.css"
 			]
         }),
-        new webpack.HashedModuleIdsPlugin()     //hash id 缓存
+        new webpack.HashedModuleIdsPlugin(),     //hash id 缓存
+        new webpack.DefinePlugin({
+            env: JSON.stringify(process.env)
+        })
     ]
 }
 
