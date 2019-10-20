@@ -6,15 +6,15 @@ const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
-const { PATHS } = require("./config.js");
+const { PATHS,hash } = require("./config.js");
 
 const baseConf=require("./base");
 const prodConf = {
     mode:"production",
     output:{
         path:PATHS.output,
-        chunkFilename:`${PATHS.out_js}[name].[contenthash:5].js`,
-        filename:`${PATHS.out_js}[name].[contenthash:5].js`,
+        chunkFilename:`${PATHS.out_js}[name].[${hash}].js`,
+        filename:`${PATHS.out_js}[name].[${hash}].js`,
         //publicPath:"./"
     },
     optimization:{
@@ -71,7 +71,7 @@ const prodConf = {
                 use: [{
                     loader: "file-loader",
                     options: {
-                        name: "[name].[contenthash:5].[ext]",
+                        name: `[name].[${hash}].[ext]`,
                         outputPath: PATHS.out_font,
                     }
                 }]
@@ -81,7 +81,7 @@ const prodConf = {
                 use: [{
                     loader: "url-loader",
                     options: {
-                        name: "[name].[contenthash:5].[ext]",
+                        name: `[name].[${hash}].[ext]`,
                         limit: 8192,
                         outputPath: PATHS.out_images,
                     }
@@ -98,8 +98,8 @@ const prodConf = {
             root:"./"
         }),
         new MiniCssExtractPlugin({
-            filename:`${PATHS.out_css}[name].[contenthash:5].css`,
-            chunkFilename:`${PATHS.out_css}[name].[contenthash:5].css`
+            filename:`${PATHS.out_css}[name].[${hash}].css`,
+            chunkFilename:`${PATHS.out_css}[name].[${hash}].css`
         }),
         new webpack.DllReferencePlugin({
             context: PATHS.base,

@@ -11,6 +11,21 @@ const PATHS={
     "node_modules":`${BASE_PATH}/node_modules/`
 }
 
+const pages = {
+    main:{
+        // page 的入口
+        entry:`${PATHS.entry}main.js`,
+        // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+        title:"主页",
+        // 在 dist/index.html 的输出
+        filename:"index.html",
+        // 模板来源
+        template:`${PATHS.views}Index.ejs`
+        // 提取出来的通用 chunk 和 vendor chunk。
+        // chunks:[]
+    }
+}
+
 const config = {
     PATHS,
     devServer:{
@@ -41,5 +56,8 @@ const config = {
             PATHS.entry,PATHS.node_modules
         ]
     },
+    pages,
+    hash:"contenthash:5",
+    commonCssLink:[]
 }
 module.exports= config;

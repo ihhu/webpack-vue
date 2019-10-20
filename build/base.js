@@ -2,8 +2,55 @@ const webpack = require('webpack');
 const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 
-const { PATHS, resolves } = require("./config.js")
+const { PATHS, resolves,pages,commonCssLink } = require("./config.js")
 const { getEnvs,getIPAdress }=require("./utils.js")
+
+// 多页面入口
+function getEntrys(pages){
+    let defaultHtmlOptions ={
+        minify:{
+            "collapseWhitespace":true,  // 折叠空白区域
+            "collapseInlineTagWhitespace":true,
+            "conservativeCollapse":true,
+            "removeRedundantAttributes":true, // 删除多余的属性
+            "removeAttributeQuotes": true, // 移除属性的引号
+            "removeComments": true, // 移除注释
+            "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
+        },
+        favicon:`${PATHS.entry}favicon.ico`,
+        commonCssLink:[...commonCssLink]
+    };
+    let entrys = {};
+    let HTMLPlugins = [];
+    for (let key in pages){
+        let page = pages[key];
+        if(typeof page === "string"){
+            let entry = page;
+            let template = `${PATHS.views}${key}.html`;
+            let filename = `${key}.html`;
+            let title = `${key} Page`
+            page = {
+                entry,template,filename,title
+            };
+        }
+        if(!page.chunks){
+            page.chunks=['vendors',"common",key]
+        }
+        entrys[key] = page.entry;
+        let options = {
+            title:page.title,
+            template:page.template,
+            filename:page.filename,
+            chunks:page.chunks,
+            commonCssLink:defaultHtmlOptions.commonCssLink,
+            favicon:defaultHtmlOptions.favicon,
+            minify:defaultHtmlOptions.minify,
+            
+        }
+        HTMLPlugins.push(new HtmlWebpackPlugin(options))
+    }
+    return {entrys,HTMLPlugins}
+}
 
 // 获取环境变量
 let env_array = getEnvs();
@@ -19,21 +66,36 @@ env_array.forEach(e => {
 }); 
 process.env.__HOST=ipAddress[0];
 
+const {entrys,HTMLPlugins} = getEntrys(pages);
+
 const baseConf={
     entry:{
-        main:`${PATHS.entry}main.js`
+        ...entrys
     },
-    optimization:{
+    optimization: {
         splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
             automaticNameDelimiter: '.',
-            cacheGroups:{
+            name: true,
+            cacheGroups: {
                 vendors: {
-                    test: /[\\/]node_modules[\\/]/,
+                    name:"vendors",
                     chunks: 'all',
+                    test: /[\\/]node_modules[\\/]/,
                     priority: -10
+                },
+                default: {
+                    name:"common",
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
                 }
             }
-            
         }
     },
     module:{
@@ -67,25 +129,8 @@ const baseConf={
         ...resolves
     },
     plugins:[
+        ...HTMLPlugins,
         new VueLoaderPlugin(),
-        new HtmlWebpackPlugin({
-            title:"主页",
-            minify:{
-                "collapseWhitespace":true,  // 折叠空白区域
-                "collapseInlineTagWhitespace":true,
-                "conservativeCollapse":true,
-                "removeRedundantAttributes":true, // 删除多余的属性
-                "removeAttributeQuotes": true, // 移除属性的引号
-                "removeComments": true, // 移除注释
-                "collapseBooleanAttributes": true // 省略只有boolean 值的属性值 例如：readonly checked
-            },
-            favicon:`${PATHS.entry}favicon.ico`,
-            filename:`./index.html`,
-            template:`${PATHS.views}Index.ejs`,
-            commonCssLink:[
-				// "//at.alicdn.com/t/font_1317347_ft563urqo0g.css"
-			]
-        }),
         new webpack.HashedModuleIdsPlugin(),     //hash id 缓存
         new webpack.DefinePlugin({
             env: JSON.stringify(process.env)
