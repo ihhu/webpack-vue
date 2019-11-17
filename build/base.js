@@ -3,7 +3,6 @@ const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 
 const { PATHS, resolves,pages,commonCssLink } = require("./config.js")
-const { getEnvs,getIPAdress }=require("./utils.js")
 
 // 多页面入口
 function getEntrys(pages){
@@ -51,20 +50,6 @@ function getEntrys(pages){
     }
     return {entrys,HTMLPlugins}
 }
-
-// 获取环境变量
-let env_array = getEnvs();
-let ipAddress = getIPAdress();
-// 设置环境变量
-env_array.forEach(e => {
-    let [key, value] = e.split('=');
-    if (value === 'false' || value === 'true') {
-        process.env[key] = JSON.parse(value);
-    } else {
-        process.env[key] = value;
-    }
-}); 
-process.env.__HOST=ipAddress[0];
 
 const {entrys,HTMLPlugins} = getEntrys(pages);
 

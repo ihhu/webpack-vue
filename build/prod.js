@@ -103,15 +103,15 @@ const prodConf = {
         }),
         new webpack.DllReferencePlugin({
             context: PATHS.base,
-            manifest: require(`${PATHS.output}/JS/vendor.manifest.json`),
+            manifest: require(`${PATHS.output}${PATHS.out_dll}vendor.manifest.json`),
         }),
         new AddAssetHtmlPlugin({
-            filepath:`${PATHS.output}/JS/*.dll.js`,
-            outputPath:`./JS/`,
-            publicPath:"JS"
+            filepath:`${PATHS.output}${PATHS.out_dll}*.dll.js`,
+            outputPath:`${PATHS.out_js}`,
+            publicPath:`${PATHS.out_js}`
         }),
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns:["**/*","!JS","!JS/*.manifest.json","!JS/*.dll.js"],
+            cleanOnceBeforeBuildPatterns:["**/*",`!${PATHS.out_dll}*`],
         })
     ]
 

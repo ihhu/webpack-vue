@@ -6,6 +6,7 @@ const PATHS={
     out_images:"Style/Images/",
     out_font:"Style/Font/",
     out_js:"JS/",
+    out_dll:"dll/",
     out_css:"Style/Css/",
     views:`${BASE_PATH}/public/pages/`,
     "node_modules":`${BASE_PATH}/node_modules/`

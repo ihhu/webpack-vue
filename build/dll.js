@@ -7,11 +7,11 @@ const { PATHS, resolves } = require("./config.js");
 module.exports={
     mode:"production",
     entry:{
-        vendor:["vue","vue-router","vuex"]
+        vendor:["vue","vue-router","vuex"],
     },
     output:{
         path:`${PATHS.output}`,
-        filename:`${PATHS.out_js}[name].dll.js`,
+        filename:`${PATHS.out_dll}[name].dll.js`,
         library:"[name]"
     },
     optimization:{
@@ -48,7 +48,7 @@ module.exports={
     },
     plugins:[
         new webpack.DllPlugin({
-            path: path.join(PATHS.output, PATHS.out_js, '[name].manifest.json'),
+            path: path.join(PATHS.output, PATHS.out_dll, '[name].manifest.json'),
             name:"[name]"
         })
     ]

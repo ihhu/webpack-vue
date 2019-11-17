@@ -6,8 +6,6 @@ const {PATHS} = require("./config");
 
 const resolve = dir => path.join(__dirname, "..", dir);
 
-const getEnvs = () => fs.readFileSync(PATHS.base + '/.env', 'utf8').split('\r\n'); 
-
 // 获取html文件名，生成多页面入口
 const getPagesEnter = path => {
     const dirArr = fs.readdirSync(path);
@@ -32,7 +30,6 @@ function getIPAdress() {
 }
 const untils={
     resolve,
-    getEnvs,
     getPagesEnter,
     getIPAdress
 } 
