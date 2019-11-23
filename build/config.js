@@ -39,7 +39,8 @@ const config = {
         },
         overlay: true,
         hot: true,
-        inline:true
+        inline:true,
+        open:true
     },
     resolves:{
         alias:{
