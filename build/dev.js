@@ -74,7 +74,15 @@ function webpackConfig(env){
                     use: [{
                         loader: "url-loader",
                         options: {
-                            name: "[name].[ext]",
+                            name(path){
+                                if(/^.*Images\\/g.test(path)){
+                                    let _path= path.replace(/^.*Images\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                                    return `${_path}.[ext]`
+                                }else{
+                                    let _path= path.replace(/^.*\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                                    return `${_path}.[ext]`
+                                }
+                            },
                             limit: 8192,
                             outputPath: PATHS.out_images,
                         }

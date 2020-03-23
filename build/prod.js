@@ -81,7 +81,13 @@ const prodConf = {
                 use: [{
                     loader: "url-loader",
                     options: {
-                        name: `[name].[${hash}].[ext]`,
+                        name(path){
+                            if(/^.*Images\\/g.test(path)){
+                                return `${path.replace(/^.*Images\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")}.[ext]`
+                            }else{
+                                return `${path.replace(/^.*\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")}.[ext]`
+                            }
+                        },
                         limit: 8192,
                         outputPath: PATHS.out_images,
                     }

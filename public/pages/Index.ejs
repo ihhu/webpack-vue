@@ -6,7 +6,10 @@
 		<meta name="screen-orientation" content="portrait" />
 		<meta name="x5-orientation" content="portrait" />
 		<meta name="Description" content=""/>
-		<meta name="Keywords" content=""/>
+        <meta name="Keywords" content=""/> 
+        <% htmlWebpackPlugin.options.commonLink.forEach(function(item){ %>
+        <link rel="stylesheet" href="<%= item %>">
+        <% }) %>
 		<title><%= htmlWebpackPlugin.options.title %></title>
 	</head>
 	<body>
