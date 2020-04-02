@@ -7,12 +7,12 @@
 		<meta name="x5-orientation" content="portrait" />
 		<meta name="Description" content=""/>
         <meta name="Keywords" content=""/> 
-        <% htmlWebpackPlugin.options.commonLink.forEach(function(item){ %>
+        <% htmlWebpackPlugin.options.commonCssLink.forEach(function(item){ %>
         <link rel="stylesheet" href="<%= item %>">
-        <% }) %>
+        <% }) %>        
 		<title><%= htmlWebpackPlugin.options.title %></title>
 	</head>
 	<body>
-		<div id="app"></div>
+        <div id="app"></div>
 	</body>
 </html>

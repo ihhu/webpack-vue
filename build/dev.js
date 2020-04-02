@@ -68,25 +68,6 @@ function webpackConfig(env){
                             outputPath: PATHS.out_font,
                         }
                     }]
-                }, 
-                {
-                    test: /\.(jpg|jpeg|png|gif|svg|ico)$/i,
-                    use: [{
-                        loader: "url-loader",
-                        options: {
-                            name(path){
-                                if(/^.*Images\\/g.test(path)){
-                                    let _path= path.replace(/^.*Images\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                                    return `${_path}.[ext]`
-                                }else{
-                                    let _path= path.replace(/^.*\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                                    return `${_path}.[ext]`
-                                }
-                            },
-                            limit: 8192,
-                            outputPath: PATHS.out_images,
-                        }
-                    }]
                 }
             ]
         },

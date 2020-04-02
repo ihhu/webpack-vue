@@ -75,23 +75,6 @@ const prodConf = {
                         outputPath: PATHS.out_font,
                     }
                 }]
-            }, 
-            {
-                test: /\.(jpg|jpeg|png|gif|svg|ico)$/i,
-                use: [{
-                    loader: "url-loader",
-                    options: {
-                        name(path){
-                            if(/^.*Images\\/g.test(path)){
-                                return `${path.replace(/^.*Images\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")}.[ext]`
-                            }else{
-                                return `${path.replace(/^.*\\/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")}.[ext]`
-                            }
-                        },
-                        limit: 8192,
-                        outputPath: PATHS.out_images,
-                    }
-                }]
             }
         ]
     },

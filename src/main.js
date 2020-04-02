@@ -26,7 +26,8 @@ new Vue({
     router,
     mounted(){
         var oApp=document.querySelector("#app")
-        var oImg=require("@/Style/Images/13.jpg");
+        var oImg=require("@Style/Images/13.jpg");
+        console.log("oImg::",oImg)
         var oImgEle=document.createElement("img");
         oImgEle.src=oImg;
         oImgEle.style.width="500px";
