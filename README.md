@@ -1,4 +1,4 @@
-# webpack-template
+# webpack-vue
 
 基于`webpack4+ babel7+`搭建的前端打包配置环境
 
