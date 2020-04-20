@@ -75,7 +75,7 @@ const baseConf={
             {
                 test:/\.js$/,
                 exclude:[/node_modules/],
-                loader:"babel-loader"
+                use:["thread-loader","babel-loader"]
             },
             {
                 test:/\.vue$/,

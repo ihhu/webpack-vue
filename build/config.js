@@ -9,7 +9,7 @@ const PATHS={
     out_dll:"dll/",
     out_css:"Style/Css/",
     views:`${BASE_PATH}/public/pages/`,
-    "node_modules":`${BASE_PATH}/node_modules/`
+    "node_modules":`node_modules`
 }
 
 const pages = {
