@@ -59,10 +59,17 @@ const baseConf={
     },
     optimization: {
         splitChunks: {
+            maxInitialRequests:Infinity,
             automaticNameDelimiter: '.',
             cacheGroups:{
+                common: {  //公共模块 
+                    name: "common",
+                    chunks: "initial",  //入口处开始提取代码
+                    minSize:0,      //代码最小多大，进行抽离
+                    minChunks:3,    //代码复 2 次以上的抽离
+                    priority:0
+                },
                 vendors: {
-                    name:"vendors",
                     test: /[\\/]node_modules[\\/]/,
                     chunks: 'all',
                     priority: -10

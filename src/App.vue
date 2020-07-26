@@ -22,7 +22,7 @@
 <script>
     export default {
         data(){
-            const text=21232
+            const text=31232
             return {
                 text
             }

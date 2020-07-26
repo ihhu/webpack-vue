@@ -1,9 +1,8 @@
 const webpack = require("webpack");
-const webpackMerge=require("webpack-merge");
+const {merge}=require("webpack-merge");
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
 const {CleanWebpackPlugin}=require("clean-webpack-plugin");
-const AddAssetHtmlPlugin=require("add-asset-html-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
 const { PATHS,hash } = require("./config.js");
@@ -43,10 +42,7 @@ const prodConf = {
                 test:/\.css$/,
                 use:[
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                        options:{
-                            //publicPath:"../../"
-                        }
+                        loader: MiniCssExtractPlugin.loader
                     },
                     "css-loader","postcss-loader"
                 ]
@@ -90,15 +86,6 @@ const prodConf = {
             filename:`${PATHS.out_css}[name].[${hash}].css`,
             chunkFilename:`${PATHS.out_css}[name].[${hash}].css`
         }),
-        new webpack.DllReferencePlugin({
-            context: PATHS.base,
-            manifest: require(`${PATHS.output}${PATHS.out_dll}vendor.manifest.json`),
-        }),
-        new AddAssetHtmlPlugin({
-            filepath:`${PATHS.output}${PATHS.out_dll}*.dll.js`,
-            outputPath:`${PATHS.out_js}`,
-            publicPath:`${PATHS.out_js}`
-        }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns:["**/*",`!${PATHS.out_dll}*`],
         })
@@ -106,4 +93,4 @@ const prodConf = {
 
 }
 
-module.exports=webpackMerge(baseConf,prodConf)
+module.exports=merge(baseConf,prodConf)
