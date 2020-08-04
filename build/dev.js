@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const {merge}=require("webpack-merge");
 const { PATHS, devServer } = require("./config.js");
-function webpackConfig(env){
+function webpackConfig(env,argv){
     const baseConf=require("./base");
     const devConf={
         mode:"development",
@@ -14,51 +14,6 @@ function webpackConfig(env){
         },
         module:{
             rules:[
-                {
-                    test: /\.css$/,
-                    use:[
-                        {
-                            loader:"style-loader"
-                        },
-                        {
-                            loader:"css-loader",
-                            options:{sourceMap:true}
-                        },
-                        {
-                            loader:"postcss-loader",
-                            options:{sourceMap:true}
-                        }
-                    ]
-                }, 
-                {
-                    test: /\.scss$/,
-                    use:[
-                        {
-                            loader:"style-loader"
-                        },
-                        {
-                            loader:"css-loader",
-                            options:{sourceMap:true}
-                        },
-                        {
-                            loader:"postcss-loader",
-                            options:{sourceMap:true}
-                        },
-                        {
-                            loader:"sass-loader",
-                            options:{
-                                sourceMap:true,
-                            }
-                        },
-                        {
-                            loader: 'sass-resources-loader',
-                            options: {
-                                sourceMap: true,
-                                resources: `${PATHS.entry}Style/Scss/_mixin.scss` 
-                            }
-                        }
-                    ]
-                }, 
                 {
                     test: /\.(eot|ttf|woff|woff2)\w*/,
                     use: [{
@@ -83,7 +38,7 @@ function webpackConfig(env){
             })
         ]
     };
-    return merge(baseConf,devConf)
+    return merge(baseConf(env,argv),devConf)
 }
 
 

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
+const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 
 const { PATHS, resolves,pages,commonCssLink } = require("./config.js")
 
@@ -52,89 +53,165 @@ function getEntrys(pages){
 }
 
 const {entrys,HTMLPlugins} = getEntrys(pages);
-
-const baseConf={
-    entry:{
-        ...entrys
-    },
-    optimization: {
-        splitChunks: {
-            maxInitialRequests:Infinity,
-            automaticNameDelimiter: '.',
-            cacheGroups:{
-                common: {  //公共模块 
-                    name: "common",
-                    chunks: "initial",  //入口处开始提取代码
-                    minSize:0,      //代码最小多大，进行抽离
-                    minChunks:3,    //代码复 2 次以上的抽离
-                    priority:0
-                },
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'all',
-                    priority: -10
+function baseConf(env,argv){    
+    const IS_DEV = env.mode !== 'production';
+    console.log("IS_DEV:::",IS_DEV)
+    return {
+        entry:{
+            ...entrys
+        },
+        optimization: {
+            splitChunks: {
+                maxInitialRequests:Infinity,
+                automaticNameDelimiter: '.',
+                cacheGroups:{
+                    common: {  //公共模块 
+                        name: "common",
+                        chunks: "initial",  //入口处开始提取代码
+                        minSize:0,      //代码最小多大，进行抽离
+                        minChunks:3,    //代码复 2 次以上的抽离
+                        priority:0
+                    },
+                    vendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        chunks: 'all',
+                        priority: -10
+                    }
                 }
             }
-        }
-    },
-    module:{
-        rules:[
-            {
-                test:/\.js$/,
-                exclude:[/node_modules/],
-                use:["thread-loader","babel-loader"]
-            },
-            {
-                test:/\.vue$/,
-                loader:"vue-loader",
-                options:{
-                    compilerOptions:{preserveWhitespace:false}
-                }
-            },
-            {
-                test:/\.html$/,
-                use:[
-                    {
-                        loader:"html-loader",
-                        options:{
-                            minimize:true
-                        }
+        },
+        module:{
+            rules:[
+                {
+                    test:/\.js$/,
+                    exclude:[/node_modules/],
+                    use:["thread-loader","babel-loader"]
+                },
+                {
+                    test:/\.vue$/,
+                    loader:"vue-loader",
+                    options:{
+                        compilerOptions:{preserveWhitespace:false}
                     }
-                ]
-            }, 
-            {
-                test: /\.(jpg|jpeg|png|gif|svg|ico)$/i,
-                use: [{
-                    loader: "url-loader",
-                    options: {
-                        name(path){
-                            if(/^.*Images(\\|\/)/g.test(path)){
-                                let _path= path.replace(/^.*Images(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                                return `${_path}.[ext]`
-                            }else{
-                                let _path= path.replace(/^.*(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                                return `${_path}.[ext]`
+                },
+                {
+                    test: /\.css$/,
+                    use:[
+                        {
+                            loader:IS_DEV ? "style-loader" : MiniCssExtractPlugin.loader
+                        },
+                        {
+                            loader:"css-loader",
+                            options:{sourceMap:IS_DEV}
+                        },
+                        {
+                            loader:"postcss-loader",
+                            options:{sourceMap:IS_DEV}
+                        }
+                    ]
+                }, 
+                {
+                    test: /\.scss$/,
+                    use:[
+                        {
+                            loader:IS_DEV ? "style-loader" : MiniCssExtractPlugin.loader
+                        },
+                        {
+                            loader:"css-loader",
+                            options:{sourceMap:IS_DEV}
+                        },
+                        {
+                            loader:"postcss-loader",
+                            options:{sourceMap:IS_DEV}
+                        },
+                        {
+                            loader:"sass-loader",
+                            options:{
+                                sourceMap:IS_DEV,
                             }
                         },
-                        limit: 8192,
-                        outputPath: PATHS.out_images,
-                        esModule: false
-                    }
-                }]
-            }
+                        {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                sourceMap:IS_DEV,
+                                resources: `${PATHS.entry}Style/Scss/_mixin.scss` 
+                            }
+                        }
+                    ]
+                },
+                {
+                    test:/\.less$/,
+                    use:[
+                        {
+                            loader:IS_DEV ? "style-loader" : MiniCssExtractPlugin.loader
+                        },
+                        {
+                            loader:"css-loader",
+                            options:{sourceMap:IS_DEV}
+                        },
+                        {
+                            loader:"postcss-loader",
+                            options:{sourceMap:IS_DEV}
+                        },
+                        {
+                            loader:"less-loader",
+                            options:{
+                                sourceMap:IS_DEV,
+                                lessOptions:{
+                                    javascriptEnabled: true,
+                                    modifyVars: {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    test:/\.html$/,
+                    use:[
+                        {
+                            loader:"html-loader",
+                            options:{
+                                minimize:true
+                            }
+                        }
+                    ]
+                }, 
+                {
+                    test: /\.(jpg|jpeg|png|gif|svg|ico)$/i,
+                    use: [{
+                        loader: "url-loader",
+                        options: {
+                            name(path){
+                                if(/^.*Images(\\|\/)/g.test(path)){
+                                    let _path= path.replace(/^.*Images(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                                    return `${_path}.[ext]`
+                                }else{
+                                    let _path= path.replace(/^.*(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                                    return `${_path}.[ext]`
+                                }
+                            },
+                            limit: 8192,
+                            outputPath: PATHS.out_images,
+                            esModule: false
+                        }
+                    }]
+                }
+            ]
+        },
+        resolve:{
+            ...resolves
+        },
+        plugins:[
+            ...HTMLPlugins, 
+            new VueLoaderPlugin(),
+            new webpack.HashedModuleIdsPlugin(),     //hash id 缓存
+            new webpack.DefinePlugin({
+                env: JSON.stringify(process.env)
+            })
         ]
-    },
-    resolve:{
-        ...resolves
-    },
-    plugins:[
-        ...HTMLPlugins,
-        new VueLoaderPlugin(),
-        new webpack.HashedModuleIdsPlugin(),     //hash id 缓存
-        new webpack.DefinePlugin({
-            env: JSON.stringify(process.env)
-        })
-    ]
+    }
 }
 
 module.exports=baseConf;
