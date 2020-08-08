@@ -126,9 +126,7 @@ function baseConf(env,argv){
                         },
                         {
                             loader:"sass-loader",
-                            options:{
-                                sourceMap:IS_DEV,
-                            }
+                            options:{sourceMap:IS_DEV}
                         },
                         {
                             loader: 'sass-resources-loader',

@@ -72,4 +72,4 @@ function webpackConfig(env,argv){
 }
 
 
-module.exports=webpackConfig
+module.exports=webpackConfig;
