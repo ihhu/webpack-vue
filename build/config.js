@@ -34,12 +34,14 @@ const config = {
         historyApiFallback:true,
         disableHostCheck:true,
         // host:"0.0.0.0",
-        proxy:[{
-            context: ['/api/**'],
-            target:"http://localhost",
-            changeOrigin: true,
-            secure: false
-        }],
+        proxy:[
+            {
+                context: ['/api/**'],
+                target:"http://localhost",
+                changeOrigin: true,
+                secure: false
+            }
+        ],
         stats: {
             colors: true,
         },
