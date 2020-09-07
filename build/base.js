@@ -45,6 +45,8 @@ function getEntrys(pages){
             commonCssLink:defaultHtmlOptions.commonCssLink,
             favicon:defaultHtmlOptions.favicon,
             minify:defaultHtmlOptions.minify,
+            description:page.description||"",
+            keywords:page.keywords||""
             
         }
         HTMLPlugins.push(new HtmlWebpackPlugin(options))
@@ -53,6 +55,7 @@ function getEntrys(pages){
 }
 
 const {entrys,HTMLPlugins} = getEntrys(pages);
+
 function baseConf(env,argv){    
     const IS_DEV = env.mode !== 'production';
     console.log("IS_DEV:::",IS_DEV)
@@ -65,6 +68,13 @@ function baseConf(env,argv){
                 maxInitialRequests:Infinity,
                 automaticNameDelimiter: '.',
                 cacheGroups:{
+                    vue: {  
+                        name: "vue.common",
+                        chunks: "initial",
+                        test: /(vue-router)|(vue[\\/]dist[\\/]vue\.esm)/,
+                        minSize:0,  
+                        priority:2
+                    },
                     common: {  //公共模块 
                         name: "common",
                         chunks: "initial",  //入口处开始提取代码

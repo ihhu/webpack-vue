@@ -8,7 +8,8 @@ function webpackConfig(env,argv){
         output:{
             path:PATHS.output,
             chunkFilename:`${PATHS.out_js}[name].js`,
-            filename:`${PATHS.out_js}[name].js`
+            filename:`${PATHS.out_js}[name].js`,
+            publicPath:"/"
         },
         optimization:{
         },

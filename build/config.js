@@ -31,9 +31,15 @@ const config = {
     PATHS,
     devServer:{
         compress:true,
+        historyApiFallback:true,
+        disableHostCheck:true,
         // host:"0.0.0.0",
-        proxy:{
-        },
+        proxy:[{
+            context: ['/api/**'],
+            target:"http://localhost",
+            changeOrigin: true,
+            secure: false
+        }],
         stats: {
             colors: true,
         },

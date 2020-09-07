@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="screen-orientation" content="portrait" />
 		<meta name="x5-orientation" content="portrait" />
-		<meta name="Description" content=""/>
-        <meta name="Keywords" content=""/> 
+		<meta name="description" content="<%= htmlWebpackPlugin.options.description %>"/>
+        <meta name="keywords" content="<%= htmlWebpackPlugin.options.keywords %>"/> 
         <% htmlWebpackPlugin.options.commonCssLink.forEach(function(item){ %>
         <link rel="stylesheet" href="<%= item %>">
         <% }) %>        
