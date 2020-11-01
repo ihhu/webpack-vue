@@ -47,6 +47,7 @@ const config = {
         },
         overlay: true,
         hot: true,
+        hotOnly: true,
         inline:true,
         open:true
     },

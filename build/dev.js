@@ -27,9 +27,7 @@ function webpackConfig(env,argv){
                 }
             ]
         },
-        devtool:"cheap-module-eval-source-map",
-        plugins:[
-        ],
+        devtool:"eval-cheap-module-source-map",
         devServer:{
             ...devServer
         },

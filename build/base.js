@@ -58,11 +58,12 @@ const {entrys,HTMLPlugins} = getEntrys(pages);
 
 function baseConf(env,argv){    
     const IS_DEV = env.mode !== 'production';
-    console.log("IS_DEV:::",IS_DEV)
+    console.log("IS_DEV:::",IS_DEV,env)
     return {
         entry:{
             ...entrys
         },
+        target:"web",
         optimization: {
             splitChunks: {
                 maxInitialRequests:Infinity,
@@ -82,7 +83,7 @@ function baseConf(env,argv){
                         minChunks:3,    //代码复 2 次以上的抽离
                         priority:0
                     },
-                    vendors: {
+                    defaultVendors: {
                         test: /[\\/]node_modules[\\/]/,
                         chunks: 'all',
                         priority: -10
@@ -99,10 +100,17 @@ function baseConf(env,argv){
                 },
                 {
                     test:/\.vue$/,
-                    loader:"vue-loader",
-                    options:{
-                        compilerOptions:{preserveWhitespace:false}
-                    }
+                    use:[
+                        {
+                            loader:"vue-loader",
+                            options:{
+                                compilerOptions:{
+                                    preserveWhitespace:false
+                                },
+                                prettify:false
+                            }
+                        }
+                    ],
                 },
                 {
                     test: /\.css$/,
@@ -213,8 +221,7 @@ function baseConf(env,argv){
         },
         plugins:[
             ...HTMLPlugins, 
-            new VueLoaderPlugin(),
-            new webpack.HashedModuleIdsPlugin(),     //hash id 缓存
+            new VueLoaderPlugin(), 
             new webpack.DefinePlugin({
                 env: JSON.stringify(process.env)
             })

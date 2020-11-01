@@ -18,10 +18,11 @@ function webpackConfig(env,argv){
             publicPath:"/"
         },
         optimization:{
+            minimize: true,
             minimizer:[
                 new TerserPlugin({
-                    cache:true,
-                    parallel:true, // 开启多线程压缩
+                    // 启用/禁用提取注释 默认值：true
+                    extractComments:false,
                     terserOptions:{
                         compress:{
                             drop_console:true,
