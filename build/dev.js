@@ -33,7 +33,9 @@ function webpackConfig(env,argv){
         },
         plugins:[
             new webpack.DefinePlugin({
-                IS_DEV: JSON.stringify(true)
+                __VUE_OPTIONS_API__:true,
+                __VUE_PROD_DEVTOOLS__:true,
+                IS_DEV:true
             })
         ]
     };

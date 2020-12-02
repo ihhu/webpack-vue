@@ -63,7 +63,7 @@ const config = {
             "@Views": "@/Views",
             "@Components": "@/Components",
             "@Router": "@/Router",
-            'vue':"vue/dist/vue.esm.js",
+            // 'vue':"vue/dist/vue.esm.js",
         },
         modules: [
             PATHS.entry,PATHS.node_modules

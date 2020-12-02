@@ -1,6 +1,7 @@
 # webpack-vue
 
-基于`webpack4+ babel7+`搭建的前端打包配置环境
+基于`webpack5+ babel7+`搭建的前端打包配置环境
+
 
 --- 
 
@@ -34,25 +35,27 @@ last 2 versions
 
 ### `.js`文件打包配置
 
-- 安装`@babel/core @babel/preset-ent @babel-transfrom-runtime @babel-loader core-js @babel/runtime @babel/plugin-proposal-class-properties`依赖包
+- 安装`@babel/core @babel/preset-ent @babel-transfrom-runtime @babel-loader @babel/runtime-corejs3`依赖包
 ```
-npm i -D @babel/core @babel/preset-ent @babel-transfrom-runtime @babel-loader core-js @babel/plugin-proposal-class-properties
-npm i -S @babel/runtime
+npm i -D @babel/core @babel/preset-ent @babel-transfrom-runtime @babel-loader @babel/runtime-corejs3
 ```
 
-- 创建`.babelrc`并编辑`.babelrc`文件
+- 创建`babel.config.json`文件
 ```
 {
     "presets":[
         ["@babel/preset-env",{
-            "useBuiltIns":"usage",
-            "corejs":3
-        }],
+            "modules": false
+        }]
     ],
     "plugins":[
         "@babel/plugin-proposal-class-properties",
         ["@babel/plugin-transform-runtime",{
-            "corejs":false
+            "useESModules":true,
+            "corejs":{
+                "version": 3,
+                "proposals": true
+            }
         }]
     ]
 }
@@ -76,18 +79,9 @@ npm i -S @babel/runtime
 
 ### `.css|.scss`文件打包配置
 
-- 安装`css-loader style-loader postcss-loader cssnano node-sass sass-loader autoprefixer css-url-relative-plugin mini-css-extract-plugin`依赖包
+- 安装`css-loader style-loader postcss postcss-loader cssnano sass sass-loader autoprefixer css-url-relative-plugin mini-css-extract-plugin`依赖包
 ```
-npm i -D css-loader style-loader postcss-loader cssnano node-sass sass-loader autoprefixer css-url-relative-plugin mini-css-extract-plugin
-```
-`node-sass`安装不成功时 创建 `.npmrc`文件并编辑
-```
-sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
-registry=https://registry.npm.taobao.org
-```
-然后重新安装`node-sass sass-loader`
-```
-npm i -D node-sass sass-loader
+npm i -D css-loader style-loader postcss postcss-loader cssnano sass sass-loader autoprefixer css-url-relative-plugin mini-css-extract-plugin
 ```
 
 - 创建`postcss.config.js`并编辑`postcss.config.js`文件

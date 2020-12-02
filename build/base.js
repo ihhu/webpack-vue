@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const VueLoaderPlugin=require("vue-loader/lib/plugin");
+const { VueLoaderPlugin }=require("vue-loader");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 
@@ -75,7 +75,7 @@ function baseConf(env,argv){
                     vue: {  
                         name: "vue.common",
                         chunks: "initial",
-                        test: /(vue-router)|(vue[\\/]dist[\\/]vue\.esm)/,
+                        test: /(vue-router)|(vue[\\/]dist[\\/]vue)|(@vue[\\/]*)/,
                         minSize:0,  
                         priority:2
                     },

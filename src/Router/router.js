@@ -1,13 +1,12 @@
-import Vue from "vue";
-import Router from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import common from "@Components/common.vue";
 const a = ()=>import(/* webpackChunkName:"views" */"@Views/a.vue");
 const b = ()=>import(/* webpackChunkName:"views" */"@Views/b.vue");
 
-Vue.use(Router);
 
-const router = new Router({
+const router = createRouter({
+    history: createWebHistory(),
     routes:[
         {
             path:"/",

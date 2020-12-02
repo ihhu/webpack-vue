@@ -1,28 +1,26 @@
-import Vue from "vue";
+import { createApp,h } from "vue";
+import router from "@Router/router.js";
+
 import App from "./App.vue";
 
-import router from "@Router/router.js";
 
 
 
 import "@Style/Scss/Style.scss";
 console.log("env:::",env)
 console.log("IS_DEV:::",IS_DEV)
+console.log("__VUE_PROD_DEVTOOLS__::",__VUE_PROD_DEVTOOLS__,typeof __VUE_PROD_DEVTOOLS__ !== 'boolean')
 console.log("app start 1");
 console.log("app",App);
 
-new Vue({
+const app = createApp({
     data(){
         return {
-            text:123
+            text:1234
         }
     },
-    el:"#app",
-    components:{
-        App
-    },
-    template:"<App/>",
-    router,
+    render(){return h(App)},
+    // router,
     mounted(){
         var oApp=document.querySelector("#app")
         var oImg=require("@Style/Images/13.jpg");
@@ -36,7 +34,8 @@ new Vue({
     
 })
 
-
+app.use(router)
+app.mount("#app");
 
 let a = new Promise(function(resolve, reject) {
     resolve();

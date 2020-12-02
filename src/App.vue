@@ -22,7 +22,7 @@
 <script>
     export default {
         data(){
-            const text=31232
+            const text=3143
             return {
                 text
             }
@@ -49,7 +49,7 @@
         }
     }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
     h1{font-size:50px;color:red;display:flex;transform:translate(50%)}
     
     .img{width:500px;margin-bottom: 10px;;
