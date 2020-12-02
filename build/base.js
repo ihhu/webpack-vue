@@ -3,7 +3,7 @@ const VueLoaderPlugin=require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin=require("html-webpack-plugin");
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
 
-const { PATHS, resolves,pages,commonCssLink } = require("./config.js")
+const { PATHS, resolves, pages, commonCssLink, hash } = require("./config.js")
 
 // 多页面入口
 function getEntrys(pages){
@@ -62,6 +62,9 @@ function baseConf(env,argv){
     return {
         entry:{
             ...entrys
+        },
+        output:{
+            assetModuleFilename:`${PATHS.out_images}[name].[${hash}][ext]`
         },
         target:"web",
         optimization: {
@@ -196,23 +199,33 @@ function baseConf(env,argv){
                 }, 
                 {
                     test: /\.(jpg|jpeg|png|gif|svg|ico)$/i,
-                    use: [{
-                        loader: "url-loader",
-                        options: {
-                            name(path){
-                                if(/^.*Images(\\|\/)/g.test(path)){
-                                    let _path= path.replace(/^.*Images(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                                    return `${_path}.[ext]`
-                                }else{
-                                    let _path= path.replace(/^.*(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                                    return `${_path}.[ext]`
-                                }
-                            },
-                            limit: 8192,
-                            outputPath: PATHS.out_images,
-                            esModule: false
+                    type:"asset",
+                    // generator: {
+                    //     filename: `${PATHS.out_images}[name].[${hash}][ext]`
+                    // },
+                    parser: {
+                        dataUrlCondition: {
+                          maxSize: 8 * 1024 // 4kb
                         }
-                    }]
+                    },
+                    // use: [{
+                    //     loader: "url-loader",
+                    //     options: {
+                    //         name(path){
+                    //             if(/^.*Images(\\|\/)/g.test(path)){
+                    //                 let _path= path.replace(/^.*Images(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                    //                 return `${_path}.[ext]`
+                    //             }else{
+                    //                 let _path= path.replace(/^.*(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                    //                 return `${_path}.[ext]`
+                    //             }
+                    //         },
+                    //         limit: 8192,
+                    //         outputPath: PATHS.out_images,
+                    //         // 关闭es6模块化
+                    //         esModule: false
+                    //     }
+                    // }]
                 }
             ]
         },

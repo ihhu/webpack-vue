@@ -30,9 +30,11 @@ const pages = {
 const config = {
     PATHS,
     devServer:{
+        // 启动gzip压缩
         compress:true,
         historyApiFallback:true,
         disableHostCheck:true,
+        publicPath:"/",
         // host:"0.0.0.0",
         proxy:[
             {
