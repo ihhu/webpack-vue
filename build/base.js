@@ -64,7 +64,7 @@ function baseConf(env,argv){
             ...entrys
         },
         output:{
-            assetModuleFilename:`${PATHS.out_images}[name].[${hash}][ext]`
+            // assetModuleFilename:`${PATHS.out_images}[name].[${hash}][ext]`,
         },
         target:"web",
         optimization: {
@@ -198,34 +198,33 @@ function baseConf(env,argv){
                     ]
                 }, 
                 {
+                    test: /\.(eot|ttf|woff|woff2)\w*/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: `${PATHS.out_font}[name].[${hash}][ext]`
+                    }
+                },
+                {
                     test: /\.(jpg|jpeg|png|gif|svg|ico)$/i,
                     type:"asset",
-                    // generator: {
-                    //     filename: `${PATHS.out_images}[name].[${hash}][ext]`
-                    // },
                     parser: {
                         dataUrlCondition: {
                           maxSize: 8 * 1024 // 4kb
                         }
                     },
-                    // use: [{
-                    //     loader: "url-loader",
-                    //     options: {
-                    //         name(path){
-                    //             if(/^.*Images(\\|\/)/g.test(path)){
-                    //                 let _path= path.replace(/^.*Images(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                    //                 return `${_path}.[ext]`
-                    //             }else{
-                    //                 let _path= path.replace(/^.*(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
-                    //                 return `${_path}.[ext]`
-                    //             }
-                    //         },
-                    //         limit: 8192,
-                    //         outputPath: PATHS.out_images,
-                    //         // 关闭es6模块化
-                    //         esModule: false
-                    //     }
-                    // }]
+                    generator: {
+                        filename(pathData){
+                            // 处理图片路径，防止不同目录重名情况
+                            let filename = pathData.filename;
+                            let _path = filename;
+                            if(/^.*Images(\\|\/)/g.test(filename)){
+                                _path= filename.replace(/^.*Images(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                            }else{
+                                _path= filename.replace(/^.*(\\|\/)/g,"").replace(/\..*$/g,"").replace(/\\/g,"/")
+                            }
+                            return `${PATHS.out_images}${_path}.[${hash}][ext]`;
+                        }
+                    }
                 }
             ]
         },
@@ -234,10 +233,7 @@ function baseConf(env,argv){
         },
         plugins:[
             ...HTMLPlugins, 
-            new VueLoaderPlugin(), 
-            new webpack.DefinePlugin({
-                env: JSON.stringify(process.env)
-            })
+            new VueLoaderPlugin()
         ]
     }
 }

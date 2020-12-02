@@ -1,4 +1,10 @@
 @import "common.scss";
+@font-face {
+    font-family: "test-font";
+    src: url('Font/test-font.eot'); 
+}
+body{font-family:Helvetica Neue,Helvetica,STHeiTi,sans-serif,microsoft yahei,"test-font"}
+
 .img{width:500px;
     img{display: block;width:100%;}
 }

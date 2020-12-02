@@ -1,16 +1,11 @@
+import "@Style/Scss/Style.scss";
+
 import { createApp,h } from "vue";
 import router from "@Router/router.js";
 
 import App from "./App.vue";
 
-
-
-
-import "@Style/Scss/Style.scss";
-console.log("env:::",env)
 console.log("IS_DEV:::",IS_DEV)
-console.log("__VUE_PROD_DEVTOOLS__::",__VUE_PROD_DEVTOOLS__,typeof __VUE_PROD_DEVTOOLS__ !== 'boolean')
-console.log("app start 1");
 console.log("app",App);
 
 const app = createApp({

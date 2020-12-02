@@ -12,20 +12,8 @@ function webpackConfig(env,argv){
             publicPath:"/"
         },
         optimization:{
-        },
-        module:{
-            rules:[
-                {
-                    test: /\.(eot|ttf|woff|woff2)\w*/,
-                    use: [{
-                        loader: "file-loader",
-                        options: {
-                            name: "[name].[ext]",
-                            outputPath: PATHS.out_font,
-                        }
-                    }]
-                }
-            ]
+            chunkIds: "named",
+            moduleIds: "named"
         },
         devtool:"eval-cheap-module-source-map",
         devServer:{

@@ -52,8 +52,8 @@
 <style lang="scss">
     h1{font-size:50px;color:red;display:flex;transform:translate(50%)}
     
-    .img{width:500px;margin-bottom: 10px;;
+    .img{width:600px;margin-bottom: 10px;;
         img{display: block;width:100%;}
     }
-    .bg-img{width:500px;min-height:275px;background:url(~@Style/Images/12.jpg) no-repeat left top;background-size:500px auto;}
+    .bg-img{width:500px;min-height:275px;background:url(~@Style/Images/a/12.jpg) no-repeat left top;background-size:500px auto;}
 </style>

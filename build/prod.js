@@ -38,20 +38,6 @@ function webpackConfig(env,argv){
                 })
             ]
         },
-        module:{
-            rules:[
-                {
-                    test: /\.(eot|ttf|woff|woff2)\w*/,
-                    use: [{
-                        loader: "file-loader",
-                        options: {
-                            name: `[name].[${hash}].[ext]`,
-                            outputPath: PATHS.out_font,
-                        }
-                    }]
-                }
-            ]
-        },
         plugins:[
             new webpack.DefinePlugin({
                 __VUE_OPTIONS_API__:true,
