@@ -54,7 +54,9 @@ function webpackConfig(env,argv){
         },
         plugins:[
             new webpack.DefinePlugin({
-                IS_DEV: JSON.stringify(false)
+                __VUE_OPTIONS_API__:true,
+                __VUE_PROD_DEVTOOLS__:false,
+                IS_DEV: false
             }),
             //css url() relative 
             new CssUrlRelativePlugin({
