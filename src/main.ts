@@ -17,7 +17,7 @@ const app = createApp({
     render(){return h(App)},
     // router,
     mounted(){
-        var oApp=document.querySelector("#app")
+        var oApp=document.querySelector("#app") as Element;
         var oImg=require("@Style/Images/13.jpg");
         console.log("oImg::",oImg)
         var oImgEle=document.createElement("img");
@@ -33,7 +33,7 @@ app.use(router)
 app.mount("#app");
 
 let a = new Promise(function(resolve, reject) {
-    resolve();
+    resolve(void 0);
 });
 
 const b =new Map()
@@ -41,7 +41,7 @@ b.set(a,"Promise");
 
 
 async function cc(){
-    await a.then(()=>{
+    await a.then(data=>{
         console.log("Promise aa")
     });
     console.log("await cc");
@@ -49,6 +49,7 @@ async function cc(){
 cc();
 
 class D{
+    a:number;
     b="bb";
 
     constructor(){

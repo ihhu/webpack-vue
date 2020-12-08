@@ -4,6 +4,7 @@
   "description": "",
   "repository": "",
   "scripts": {
+    "tsc": "tsc --watch",
     "dev": "webpack serve --env mode=development --progress --color --config build/dev.js",
     "prod": "webpack --env mode=production --progress --color --config build/prod.js",
     "prod:analyzer": "webpack --env mode=production  --env analyzer=true --progress --color --config build/prod.js",
@@ -16,9 +17,10 @@
     "@babel/core": "^7.12.9",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "@babel/runtime-corejs3": "^7.12.5",
     "@vue/compiler-sfc": "^3.0.4",
-    "autoprefixer": "^10.0.4",
+    "autoprefixer": "^10.1.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
@@ -30,15 +32,16 @@
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "mini-css-extract-plugin": "^1.3.2",
-    "postcss": "^8.1.14",
+    "postcss": "^8.2.0",
     "postcss-loader": "^4.1.0",
-    "sass": "^1.29.0",
+    "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "sass-resources-loader": "^2.1.1",
     "style-loader": "^2.0.0",
     "thread-loader": "^3.0.1",
+    "typescript": "^4.1.2",
     "vue-loader": "^16.1.0",
-    "webpack": "^5.9.0",
+    "webpack": "^5.10.0",
     "webpack-bundle-analyzer": "^4.2.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
@@ -46,7 +49,7 @@
   },
   "dependencies": {
     "vue": "^3.0.3",
-    "vue-router": "^4.0.0-rc.6",
+    "vue-router": "^4.0.1",
     "vuex": "^4.0.0-rc.2"
   }
 }

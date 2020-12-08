@@ -15,7 +15,7 @@ const PATHS={
 const pages = {
     main:{
         // page 的入口
-        entry:`${PATHS.entry}main.js`,
+        entry:`${PATHS.entry}main.ts`,
         // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
         title:"主页",
         // 在 dist/index.html 的输出
@@ -57,7 +57,6 @@ const config = {
         alias:{
             "@": PATHS.entry,
             "@JS": "@/JS",
-            "@Mixins": "@/Mixins",
             "@Style": "@/Style",
             "@Store": "@/Store",
             "@Views": "@/Views",

@@ -2,6 +2,10 @@
     "presets":[
         ["@babel/preset-env",{
             "modules": false
+        }],
+        ["@babel/preset-typescript",{
+            "isTSX":true,
+            "allExtensions":true
         }]
     ],
     "plugins":[

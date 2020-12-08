@@ -97,7 +97,7 @@ function baseConf(env,argv){
         module:{
             rules:[
                 {
-                    test:/\.js$/,
+                    test:/\.(ts|js)x?$/,
                     exclude:[/node_modules/],
                     use:["thread-loader","babel-loader"]
                 },
