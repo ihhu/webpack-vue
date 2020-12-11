@@ -1,7 +1,7 @@
 import "@Style/Scss/Style.scss";
 
-import { createApp,h } from "vue";
-import router from "@Router/router.js";
+import { createApp, h } from "vue";
+import router from "@Router/router.ts";
 
 import App from "./App.vue";
 
@@ -11,10 +11,12 @@ console.log("app",App);
 const app = createApp({
     data(){
         return {
-            text:1234
+            text:424323
         }
     },
-    render(){return h(App)},
+    render(){
+        return h(App)
+    },
     // router,
     mounted(){
         var oApp=document.querySelector("#app") as Element;
@@ -22,7 +24,7 @@ const app = createApp({
         console.log("oImg::",oImg)
         var oImgEle=document.createElement("img");
         oImgEle.src=oImg;
-        oImgEle.style.width="500px";
+        oImgEle.style.width="400px";
         oImgEle.style.backgroundImage=`url(${oImg})`;
         oApp.appendChild(oImgEle);
     }
@@ -35,7 +37,6 @@ app.mount("#app");
 let a = new Promise(function(resolve, reject) {
     resolve(void 0);
 });
-
 const b =new Map()
 b.set(a,"Promise");
 
@@ -44,7 +45,7 @@ async function cc(){
     await a.then(data=>{
         console.log("Promise aa")
     });
-    console.log("await cc");
+    console.log("await ccccc");
 };
 cc();
 
@@ -60,8 +61,14 @@ class D{
     }
 }
 const d=new D()
-console.log("class d",d,d.b,d.a)
+console.log("class dd",d,d.b,d.a)
 d.setA();
 console.log("class d.a",d.a)
 console.log("map",b.get(a));
 console.log([1, 4, -5, 10].find((n) => n < 0));
+
+
+// 启用热更新
+if((module as any).hot){
+    (module as any).hot.accept()
+}

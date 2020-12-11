@@ -9,7 +9,9 @@ function webpackConfig(env,argv){
             path:PATHS.output,
             chunkFilename:`${PATHS.out_js}[name].js`,
             filename:`${PATHS.out_js}[name].js`,
-            publicPath:"/"
+            publicPath:"/",
+            hotUpdateChunkFilename:"hot/[id].hot-update.js",
+            hotUpdateMainFilename:"hot/hot-update.json",
         },
         optimization:{
             chunkIds: "named",
@@ -20,6 +22,9 @@ function webpackConfig(env,argv){
             ...devServer
         },
         plugins:[
+            new webpack.HotModuleReplacementPlugin({
+                multiStep: true,
+            }),
             new webpack.DefinePlugin({
                 __VUE_OPTIONS_API__:true,
                 __VUE_PROD_DEVTOOLS__:true,

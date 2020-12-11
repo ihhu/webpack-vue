@@ -15,7 +15,7 @@ const PATHS={
 const pages = {
     main:{
         // page 的入口
-        entry:`${PATHS.entry}main.ts`,
+        entry:`${PATHS.entry}main.tsx`,
         // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
         title:"主页",
         // 在 dist/index.html 的输出
@@ -50,6 +50,7 @@ const config = {
         overlay: true,
         hot: true,
         hotOnly: true,
+        // watchContentBase:true,
         inline:true,
         open:true
     },

@@ -1,8 +1,10 @@
 <template>
     <div id="app">
+        <MyBook/>
         <router-link to="/" exact>根路由</router-link>
         <router-link to="/a">a路由</router-link>
         <router-link to="/b">b路由</router-link>
+        <router-link to="/tsx">tsx路由</router-link>
         <hr>
         <hr>
         <hr>
@@ -22,13 +24,16 @@
 </template>
 <script lang="ts">
     import { defineComponent, reactive } from "vue";
+    import MyBook from "./MyBook.tsx";
     interface Book {
         title: string
         year?: number
     }
     export default defineComponent({
         data(){
-            const text=314342432423
+            let text:number=3143
+            // text = "text";
+            
             return {
                 text
             }
@@ -37,19 +42,20 @@
             const book = reactive<Book>({ title: 'Vue 3 Guide' })
             return { book }
         },
+        components:{
+            MyBook
+        },
         methods:{
             test(){
-                let a=data=>console.log(data);
-                return a
             }
         },
         mounted(){
             console.log(this.text);
             let a = new Promise(function(resolve, reject) {
-                resolve();
+                resolve(void 0);
             });
 
-            a.then(()=>{
+            a.then((data)=>{
                 console.log("Promise aa")
             });
             const b =new Map()
