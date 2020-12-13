@@ -1,8 +1,8 @@
-import { ref } from "vue";
+import { ref, defineComponent } from "vue";
 import common from "@/Components/common.vue"
 
 
-export default {
+export default defineComponent({
     component:{
         common
     },
@@ -18,4 +18,4 @@ export default {
             <App/>
         )
     }
-}
+});

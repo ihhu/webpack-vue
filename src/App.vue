@@ -24,16 +24,14 @@
 </template>
 <script lang="ts">
     import { defineComponent, reactive } from "vue";
-    import MyBook from "./MyBook.tsx";
+    import MyBook from "./MyBook";
     interface Book {
         title: string
         year?: number
     }
     export default defineComponent({
         data(){
-            let text:number=3143
-            // text = "text";
-            
+            let text:number=31434
             return {
                 text
             }

@@ -15,7 +15,7 @@ const app = createApp({
         }
     },
     render(){
-        return h(App)
+        return <App/>
     },
     // router,
     mounted(){
@@ -24,7 +24,7 @@ const app = createApp({
         console.log("oImg::",oImg)
         var oImgEle=document.createElement("img");
         oImgEle.src=oImg;
-        oImgEle.style.width="400px";
+        oImgEle.style.width="500px";
         oImgEle.style.backgroundImage=`url(${oImg})`;
         oApp.appendChild(oImgEle);
     }

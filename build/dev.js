@@ -10,10 +10,10 @@ function webpackConfig(env,argv){
             chunkFilename:`${PATHS.out_js}[name].js`,
             filename:`${PATHS.out_js}[name].js`,
             publicPath:"/",
-            hotUpdateChunkFilename:"hot/[id].hot-update.js",
-            hotUpdateMainFilename:"hot/hot-update.json",
+            // hotUpdateChunkFilename:"hot/[id].hot-update.js",
+            // hotUpdateMainFilename:"hot/hot-update.json",
         },
-        optimization:{
+        optimization:{/*  */
             chunkIds: "named",
             moduleIds: "named"
         },
@@ -22,9 +22,6 @@ function webpackConfig(env,argv){
             ...devServer
         },
         plugins:[
-            new webpack.HotModuleReplacementPlugin({
-                multiStep: true,
-            }),
             new webpack.DefinePlugin({
                 __VUE_OPTIONS_API__:true,
                 __VUE_PROD_DEVTOOLS__:true,

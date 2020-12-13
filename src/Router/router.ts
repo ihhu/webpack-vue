@@ -5,7 +5,6 @@ import common from "@Components/common.vue";
 const a = ()=>import(/* webpackChunkName:"a" */"@Views/a.vue");
 const b = ()=>import(/* webpackChunkName:"b" */"@Views/b.vue");
 const tsx = ()=>import(/* webpackChunkName:"tsx" */"@Views/tsx.tsx");
-
 // let c = 212;
 // c = "fda";
 const router = createRouter({

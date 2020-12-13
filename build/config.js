@@ -67,7 +67,8 @@ const config = {
         },
         modules: [
             PATHS.entry,PATHS.node_modules
-        ]
+        ],
+        extensions: ['.ts', '.tsx', '.js', '.json',".vue"]
     },
     pages,
     hash:"contenthash:5",
