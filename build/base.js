@@ -201,7 +201,7 @@ function baseConf(env,argv){
                     test: /\.(eot|ttf|woff|woff2)\w*/,
                     type: 'asset/resource',
                     generator: {
-                        filename: `${PATHS.out_font}[name].[${hash}][ext]`
+                        filename: `${PATHS.out_font}[folder][name].[${hash}][ext]`
                     }
                 },
                 {
