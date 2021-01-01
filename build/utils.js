@@ -1,18 +1,7 @@
 const path=require("path");
-const fs = require('fs');
 const os = require('os');
+const portfinder = require("portfinder")
 
-const {PATHS} = require("./config");
-
-const resolve = dir => path.join(__dirname, "..", dir);
-
-// 获取html文件名，生成多页面入口
-const getPagesEnter = path => {
-    const dirArr = fs.readdirSync(path);
-    const filesArr = dirArr.filter(e => e.indexOf('html') >= 0)
-                           .map(e => e.replace('.html', ''));
-    return filesArr;
-};
 // 获取ip地址
 function getIPAdress() {
     let interfaces = os.networkInterfaces();
@@ -28,12 +17,63 @@ function getIPAdress() {
     }
     return address;
 }
+
+// 解析argv参数值
+function parseArgs(argv){
+    let isBegin = false;
+    let _data = {};
+    let _reg = /^--/g;
+    argv.forEach((value,index)=>{
+        if(index === 0){
+            return;
+        } 
+        let prevValue = argv[index - 1];
+        let curValue = value.replace(_reg,"");
+        curValue = curValue.split("=");
+        if(_reg.test(value)){
+            isBegin = true;
+            if(curValue[1]){
+                _data[curValue[0]] = curValue[1]; 
+            }else{
+                _data[curValue[0]] = _data[curValue[0]]||true; 
+            }
+        }else if(isBegin&&_reg.test(prevValue)){
+            prevValue = prevValue.replace(_reg,"");
+            if(_data[prevValue] === true){
+                _data[prevValue] = {};
+            }
+            let _old = _data[prevValue];
+            if(curValue[1]){
+                _data[prevValue] = {
+                    ..._old,
+                    [curValue[0]]:curValue[1]
+                };
+            }else{
+                _data[prevValue] = {
+                    ..._old,
+                    [curValue[0]]:true
+                };
+            } 
+        }
+    })
+    return _data;
+}
+
+// 获取端口
+async function getPort(basePort= 8080){
+    let port = basePort;
+    portfinder.basePort = basePort;
+    port = await portfinder.getPortPromise();
+    return port;
+}
+
 const untils={
-    resolve,
-    getPagesEnter,
-    getIPAdress
+    getIPAdress,
+    getPort,
+    parseArgs
 } 
 
+module.exports=untils;
 
 /* var path = require('path')
 var config = require('../config')
@@ -106,4 +146,3 @@ exports.styleLoaders = function (options) {
   }
   return output
 } */
-module.exports=untils;
