@@ -170,7 +170,7 @@ function webpackConfig(env,argv){
                             loader: 'sass-resources-loader',
                             options: {
                                 sourceMap:IS_DEV,
-                                resources: `${paths.entry}assets/scss/_mixin.scss` 
+                                resources: `${paths.entry}/assets/scss/_mixin.scss` 
                             }
                         }
                     ]

@@ -1,0 +1,24 @@
+@import "_reset.scss";
+/* 滚动条 */
+.scroll::-webkit-scrollbar {
+  width: 7px !important;
+  border-radius: 7px;
+  display: block !important;
+}
+
+/* Handle样式 */
+.scroll::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background-color: #ddd;
+}
+
+/*hover到滚动条上*/
+.scroll::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: lighten(#ddd,5%);
+}
+
+/*滚动条按下*/
+.scroll::-webkit-scrollbar-thumb:vertical:active {
+  background-color: darken(#ddd,5%);
+}

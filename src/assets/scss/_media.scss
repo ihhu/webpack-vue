@@ -1,0 +1,31 @@
+//page width
+$designWidth: 640;
+//px to rem
+@function rem($px: 10) {
+    @return $px/$designWidth*10rem;
+}
+
+html{font-size:$designWidth/10*1px;width:100%;}
+body{font-size:rem(28);margin:0 auto;width:100%;min-width:320px;}
+
+/*media*/
+@for $i from 32 through $designWidth/10 {
+    $index: 10;
+    $j: $i*$index;
+    @if $i==32{
+        @media screen and (max-width:#{$j}px){
+           html{font-size:($j/10) + px !important;}
+        } 
+    }
+    @media screen and (min-width: #{$j}px) {
+        html {
+            @if $j>=$designWidth {
+                font-size: ($j/10) + px !important;
+            }@else {
+                font-size: ($j/10) + px
+            }
+            
+        }
+    }
+}
+html {font-size: $designWidth/10/$designWidth*100vw;}
