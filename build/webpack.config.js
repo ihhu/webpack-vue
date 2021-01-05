@@ -1,6 +1,3 @@
-// 设置Babel环境变量
-process.env.BABEL_ENV = "renderer";
-
 const webpack = require('webpack');
 const { merge }=require("webpack-merge");
 
@@ -332,16 +329,6 @@ function webpackConfig(env,argv){
             })
         ]
 
-    }
-
-    // 显示编译进度
-    if(argv.progress){
-        const isProfile = argv.progress === 'profile';
-        baseConf.plugins.push(
-            new webpack.ProgressPlugin({
-                profile: isProfile
-            })
-        )
     }
 
     if(IS_DEV){

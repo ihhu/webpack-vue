@@ -1,7 +1,7 @@
 @import "common.scss";
 @font-face {
     font-family: "test-font";
-    src: url('Font/test-font.eot'); 
+    src: url('../font/test-font.eot'); 
 }
 body{font-family:Helvetica Neue,Helvetica,STHeiTi,sans-serif,microsoft yahei,"test-font"}
 
@@ -9,4 +9,4 @@ body{font-family:Helvetica Neue,Helvetica,STHeiTi,sans-serif,microsoft yahei,"te
     img{display: block;width:100%;}
 }
 
-.bg-img{width:500px;min-height:275px;background:url(~@/Style/Images/12.jpg) no-repeat left top;background-size:500px auto;}
+.bg-img{width:500px;min-height:275px;background:url(~@assets/images/12.jpg) no-repeat left top;background-size:500px auto;}

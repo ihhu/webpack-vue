@@ -1,14 +1,14 @@
 <template>
     <div>
-        <common/>
+        <Common/>
         <h2>this is b view</h2>    
     </div>
 </template>
 <script>
-    import common from "@/Components/common.vue"
+    import Common from "@/components/Common.vue"
     export default{
         components:{
-            common
+            Common
         }
     }
 </script>

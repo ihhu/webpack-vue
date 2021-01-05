@@ -5,9 +5,9 @@
   "repository": "",
   "scripts": {
     "tsc": "tsc --watch",
-    "dev": "webpack serve --env mode=development --progress --color --config build/webpack.config.js",
-    "prod": "webpack --env mode=production --progress --color --config build/webpack.config.js",
-    "prod:analyzer": "webpack --env mode=production  --env analyzer=true --progress --color --config build/webpack.config.js",
+    "dev": "webpack serve --env mode=development --progress --config build/webpack.config.js",
+    "prod": "webpack --env mode=production --progress --config build/webpack.config.js",
+    "prod:analyzer": "webpack --env mode=production --analyze --progress --config build/webpack.config.js",
     "build": "npm run prod"
   },
   "keywords": [],

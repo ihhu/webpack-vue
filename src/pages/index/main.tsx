@@ -1,7 +1,7 @@
-import "@Style/Scss/Style.scss";
+import "@assets/scss/style.scss";
 
 import { createApp, h } from "vue";
-import router from "@Router/router.ts";
+import router from "@/router/index.ts";
 
 import App from "./App.vue";
 
@@ -20,7 +20,7 @@ const app = createApp({
     // router,
     mounted(){
         var oApp=document.querySelector("#app") as Element;
-        var oImg=require("@Style/Images/13.jpg");
+        var oImg=require("@assets/images/13.jpg");
         console.log("oImg::",oImg)
         var oImgEle=document.createElement("img");
         oImgEle.src=oImg;

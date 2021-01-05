@@ -15,7 +15,7 @@
             {{text}}
         </h1>
         <div class="img">
-            <img src="./Style/Images/11.jpg" alt="">
+            <img src="@assets/images/11.jpg" alt="">
         </div>
         <div class="bg-img">
             img background
@@ -24,14 +24,14 @@
 </template>
 <script lang="ts">
     import { defineComponent, reactive } from "vue";
-    import MyBook from "./MyBook";
+    import MyBook from "@/components/MyBook";
     interface Book {
         title: string
         year?: number
     }
     export default defineComponent({
         data(){
-            let text:number=31434
+            let text:number=314345435
             return {
                 text
             }
@@ -69,5 +69,5 @@
     .img{width:600px;margin-bottom: 10px;;
         img{display: block;width:100%;}
     }
-    .bg-img{width:500px;min-height:275px;background:url(~@Style/Images/a/12.jpg) no-repeat left top;background-size:500px auto;}
+    .bg-img{width:500px;min-height:275px;background:url(~@assets/images/a/12.jpg) no-repeat left top;background-size:500px auto;}
 </style>

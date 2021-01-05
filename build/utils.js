@@ -58,14 +58,6 @@ function parseArgs(argv){
     return _data;
 }
 
-// 获取端口
-async function getPort(basePort= 8080){
-    let port = basePort;
-    portfinder.basePort = basePort;
-    port = await portfinder.getPortPromise();
-    return port;
-}
-
 const untils={
     getIPAdress,
     getPort,
