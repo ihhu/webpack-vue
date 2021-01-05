@@ -20,21 +20,6 @@ const webPaths = {
     output: `${BASE_PATH}/dist/`,
     page: `${BASE_PATH}/src/pages/`,
 }
-//  electron renderer paths 
-const rendererPaths = {
-    ...basePath,
-    entry: `${BASE_PATH}/src/renderer/`,
-    output: `${BASE_PATH}/app/renderer/`,
-    page: `${BASE_PATH}/src/renderer/pages/`,
-}
-// electron main paths
-const mainPaths = {
-    ...basePath,
-    entry:`${BASE_PATH}/src/main/`,
-    output:`${BASE_PATH}/app/main/`,
-    out_js:""
-}
-
 
 // ======================================
 // ======================================
@@ -77,7 +62,7 @@ const webConfig = {
     },
     resolves:{
         alias:{
-            "@": webPaths.entry,
+            "@": `${basePath.base}/src`,
             "@assets": "@/assets"
         },
         modules: [
@@ -99,53 +84,10 @@ const webConfig = {
         }
     }
 }
-// electron renderer config
-const rendererConfig = {
-    target:"electron-renderer",
-    paths:rendererPaths,
-    devServer:{
-        ...devServer,
-    },
-    resolves:{
-        alias:{
-            "@": rendererPaths.entry,
-            "@assets": "@/assets"
-        },
-        modules: [
-            rendererPaths.entry,rendererPaths.node_modules
-        ],
-        extensions: ['.ts', '.tsx', '.js', '.json',".vue"]
-    },
-    pages:{
-        main:{
-            title:"主页",
-            filename:"index.html",
-            entry:`${rendererPaths.page}/index/main.tsx`,
-            template:`${rendererPaths.entry}Index.ejs`
-        }
-    },
-    hash:"",
-    commonCssLink:[]
-}
-// electron main config
-const mainConfig = {
-    target:"electron-main",
-    entry:`${mainPaths.entry}main.ts`,
-    paths:mainPaths,
-    resolves:{
-        alias:{
-            "@": mainPaths.entry,
-        },
-        modules: [
-            mainPaths.entry,mainPaths.node_modules
-        ],
-        extensions: ['.ts', '.tsx', '.js', '.json',".vue"]
-    },
-}
 
 module.exports = {
     web: webConfig,
-    renderer: rendererConfig,
-    main: mainConfig,
+    renderer: {},
+    main: {},
     node: {}
 }

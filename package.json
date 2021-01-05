@@ -5,9 +5,9 @@
   "repository": "",
   "scripts": {
     "tsc": "tsc --watch",
-    "dev": "webpack serve --env mode=development --progress --color --config build/dev.js",
-    "prod": "webpack --env mode=production --progress --color --config build/prod.js",
-    "prod:analyzer": "webpack --env mode=production  --env analyzer=true --progress --color --config build/prod.js",
+    "dev": "webpack serve --env mode=development --progress --color --config build/webpack.config.js",
+    "prod": "webpack --env mode=production --progress --color --config build/webpack.config.js",
+    "prod:analyzer": "webpack --env mode=production  --env analyzer=true --progress --color --config build/webpack.config.js",
     "build": "npm run prod"
   },
   "keywords": [],
@@ -29,7 +29,7 @@
     "cssnano": "^4.1.10",
     "dart-sass": "^1.25.0",
     "html-loader": "^1.3.2",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.0.0-beta.4",
     "less": "^4.0.0",
     "less-loader": "^7.2.1",
     "mini-css-extract-plugin": "^1.3.3",
