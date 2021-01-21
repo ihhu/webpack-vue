@@ -1,0 +1,18 @@
+node_modules
+dist
+build
+app
+
+.*
+.history
+
+*.d.ts
+*.ejs
+*.log
+*.project
+
+babel.config.js
+package-lock.json
+
+# Log files
+*.log
