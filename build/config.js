@@ -66,7 +66,7 @@ const webConfig = {
             "@assets": "@/assets"
         },
         modules: [
-            webPaths.entry, 
+            basePath.base,
             webPaths.node_modules
         ],
         extensions: ['.ts', '.tsx', '.js', '.json',".vue"]
