@@ -5,8 +5,8 @@ import App from './App.vue';
 
 
 
-console.log('IS_DEV:::',IS_DEV);
-console.log('app',App);
+console.log('IS_DEV:::', IS_DEV);
+console.log('app', App);
 
 const app = createApp({
   data(){
@@ -16,14 +16,14 @@ const app = createApp({
   },
   // router,
   mounted(){
-    const oApp=document.querySelector('#app') as Element;
-    // eslint-disable-next-line
-        const oImg=require('@assets/images/13.jpg');
-    console.log('oImg::',oImg);
-    const oImgEle=document.createElement('img');
-    oImgEle.src=oImg;
-    oImgEle.style.width='500px';
-    oImgEle.style.backgroundImage=`url(${oImg})`;
+    console.log(IS_DEV);
+    const oApp = document.querySelector('#app') as Element;
+    const oImg = require('@assets/images/13.jpg');
+    console.log('oImg::', oImg);
+    const oImgEle = document.createElement('img');
+    oImgEle.src = oImg;
+    oImgEle.style.width = '500px';
+    oImgEle.style.backgroundImage = `url(${oImg})`;
     oApp.appendChild(oImgEle);
   },
   render(){
@@ -35,15 +35,15 @@ const app = createApp({
 app.use(router);
 app.mount('#app');
 
-const a = new Promise(function(resolve, reject) {
+const a = new Promise(function(resolve) {
   resolve(void 0);
 });
-const b =new Map();
-b.set(a,'Promise');
+const b = new Map();
+b.set(a, 'Promise');
 
 
 async function cc(){
-  await a.then(data=>{
+  await a.then(()=>{
     console.log('Promise aa');
   });
   console.log('await ccccc');
@@ -55,21 +55,23 @@ class D{
     b='bb';
 
     constructor(){
-      this.a=0;
+      this.a = 0;
     }
     setA(){
-      this.a=10;
+      this.a = 10;
     }
 }
-const d=new D();
-console.log('class dd',d,d.b,d.a);
+const d = new D();
+console.log('class dd', d, d.b, d.a);
 d.setA();
-console.log('class d.a',d.a);
-console.log('map',b.get(a));
+console.log('class d.a', d.a);
+console.log('map', b.get(a));
 console.log([1, 4, -5, 10].find((n) => n < 0));
 
 
 // 启用热更新
+/* eslint-disable */
 if((module as any).hot){
   (module as any).hot.accept();
 }
+/* eslint-disable */

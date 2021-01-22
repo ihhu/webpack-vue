@@ -42,9 +42,13 @@ module.exports = {
     'semi': [
       'error',
       'always'
-    ]
+    ],
+    "array-bracket-spacing":['error','never'],
+    'comma-spacing':['error',{'before':false,'after':true}],
+    'space-infix-ops':['error',{'int32Hint':true}],
+    '@typescript-eslint/no-var-requires':'off'
   },
   'globals':{
-    'IS_DEV':'readonly'
+    'IS_DEV':'readonly',
   }
 };

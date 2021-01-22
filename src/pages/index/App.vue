@@ -52,7 +52,7 @@ export default defineComponent({
     return { book };
   },
   data(){
-    let text=314345435;
+    let text = 314345435;
     return {
       text
     };
@@ -66,9 +66,9 @@ export default defineComponent({
     a.then(()=>{
       console.log('Promise aa');
     });
-    const b =new Map();
-    b.set(a,'Promise');
-    console.log('map',b.get(a));
+    const b = new Map();
+    b.set(a, 'Promise');
+    console.log('map', b.get(a));
     console.log([1, 4, -5, 10].find((n) => n < 0));
   },
   methods:{

@@ -7,6 +7,7 @@ const CssUrlRelativePlugin = require('css-url-relative-plugin');
 const { CleanWebpackPlugin }=require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { VueLoaderPlugin }=require('vue-loader');
+const ESLintPlugin = require('eslint-webpack-plugin')
 const config =  require('./config.js');
 
 const { 
@@ -276,6 +277,9 @@ function webpackConfig(env,argv){
         __VUE_OPTIONS_API__:true,
         __VUE_PROD_DEVTOOLS__:true,
         IS_DEV:true
+      }),
+      new ESLintPlugin({
+        extensions:['js','ts','jsx','tsx']
       })
     ]
   };
