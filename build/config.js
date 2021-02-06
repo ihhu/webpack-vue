@@ -38,7 +38,7 @@ const devServer = {
   hotOnly: true,
   // watchContentBase:true,
   inline:true,
-  open:false
+  open:true
 };
 
 
