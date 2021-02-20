@@ -210,7 +210,8 @@ function webpackConfig(env,argv){
             {
               loader:'html-loader',
               options:{
-                minimize:true
+                minimize:true,
+                esModule:false,
               }
             }
           ]
