@@ -1,24 +1,38 @@
 {
-    "compilerOptions": {
-        "skipLibCheck":true,
-        "target": "esnext",
-        "module": "esnext",
-        "allowJs": true,
-        "jsx": "preserve",
-        "noEmit": true,
-        "isolatedModules": true,
-        "strict": true,
-        "moduleResolution": "node",
-        "baseUrl": "./",
-        "paths": {
-            "@/*":["./src/*"],
-            "@assets/*": ["./src/renderer/assets/*"],
-        }, 
-        "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "target": "esnext",
+    "module": "esnext",
+    "allowJs": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "isolatedModules": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@assets/*": [
+        "./src/renderer/assets/*"
+      ],
     },
-    "include":[   
-        "src/**/*",
-        "typings",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "esnext",
+      "dom"
     ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "typings",
+  ]
 }

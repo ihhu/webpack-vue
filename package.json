@@ -5,6 +5,7 @@
   "repository": "",
   "scripts": {
     "tsc": "tsc --watch",
+    "vue-tsc": "vue-tsc --watch",
     "dev": "webpack serve --env mode=development --progress --config build/webpack.config.js",
     "prod": "webpack --env mode=production --progress --config build/webpack.config.js",
     "prod:analyzer": "webpack --env mode=production --analyze --progress --config build/webpack.config.js",
@@ -48,6 +49,7 @@
     "typescript": "^4.3.5",
     "vue-eslint-parser": "^7.8.0",
     "vue-loader": "^16.3.1",
+    "vue-tsc": "^0.2.1",
     "webpack": "^5.45.1",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",

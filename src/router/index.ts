@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 // import a from "@Views/a.vue";
 const A = ()=>import(/* webpackChunkName:"a" */'@/components/A.vue');
 const B = ()=>import(/* webpackChunkName:"b" */'@/components/B.vue');
-const Tsx = ()=>import(/* webpackChunkName:"tsx" */'@/components/Tsx.tsx');
+const Tsx = ()=>import(/* webpackChunkName:"tsx" */'@/components/Tsx');
 // let c = 212;
 // c = "fda";
 const router = createRouter({
