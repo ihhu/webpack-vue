@@ -25,20 +25,17 @@ const webPaths = {
 // ======================================
 // dev server config
 const devServer = {
-  // 启动gzip压缩
-  compress:true,
   historyApiFallback:true,
-  disableHostCheck:true,
-  publicPath:'/',
-  stats: {
-    colors: true,
+  client:{
+    overlay: true,
+    progress:true
   },
-  overlay: true,
   hot: true,
-  hotOnly: true,
-  // watchContentBase:true,
-  inline:true,
-  open:true
+  open:true,
+  devMiddleware:{
+    publicPath:'/'
+  },
+  allowedHosts:'all'
 };
 
 
